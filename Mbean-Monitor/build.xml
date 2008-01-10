@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+**
+**      Author:
+**              Laurent Le Grandois <Laurent.Le.Grandois@gmail.com>
+**
+**  This program is free software; you can redistribute it and/or modify
+** it under the terms of the GNU General Public License as published by
+**  the Free Software Foundation; either version 2 of the License, or
+**  (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+**  but WITHOUT ANY WARRANTY; without even the implied warranty of
+**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+**  GNU General Public License for more details.
+**
+**  You should have received a copy of the GNU General Public License
+** along with this program; if not, write to the Free Software
+**
+ */
+-->
+<project name="MBean-Monitor" default="compile">
+
+	<property 	environment="env"/>
+	<property 	name="JBOSS_HOME" 
+				value="${env.JBOSS_HOME}"/>
+	<property 	name="xmlfile" 
+				value="src/main/config/jbossreportdgddi.xml"/>
+				
+	<property environment="env"/>
+	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}"/>
+	<property name="xmlfile" value="src/main/config/jbossreportdgddi.xml"/>
+	<property name="version" value="1.0-alpha"/>
+	
+	<path id="classpath">
+		<pathelement location="target/mbeanmonitoring-${version}.jar"/>
+		<fileset dir="${env.JBOSS_HOME}">
+			<include name="client/jbossall-client.jar"/>
+			<include name="server/all/lib/jboss-management.jar"/>
+			<include name="client/log4j.jar"/>
+		</fileset>
+
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir="classes"/>
+			<fileset dir="output"/>
+			<fileset dir="target"/>
+		</delete>
+	</target>
+
+	<target name="cleancastor">
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir="src/main/java/org/sourceforge/mbeanmonitoring/report/castor" includes="**/*.java"/>
+		</delete>
+	</target>
+
+	<target name="init" >
+		<mkdir dir="classes" />
+		<mkdir dir="bin" />
+		<mkdir dir="javadoc" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="src/main/java" destdir="classes" debug="on" deprecation="on" optimize="off">
+			<classpath refid="classpath"/>
+		</javac>
+		<copy todir="classes" >
+			<fileset dir="src/main">
+				<include name="config/**"/>
+			</fileset>
+		</copy>
+		<jar destfile="target/mbeanmonitoring-${version}.jar" basedir="classes"/>
+	</target>
+
+	<target name="run">
+		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.Capture">
+			<classpath refid="classpath"/>
+			<arg line="${xmlfile}"/>
+		</java>
+	</target>
+
+	<target name="castor" depends="cleancastor">
+		<java fork="yes" classname="org.exolab.castor.builder.SourceGenerator">
+			<classpath refid="classpath"/>
+			<arg line="-i src/main/config/jbossreportserver.xsd -package org.sourceforge.mbeanmonitoring.report.castor -dest src/main/java"/>
+		</java>
+	</target>
+
+	<target name="graph">
+		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.Graph">
+			<classpath refid="classpath"/>
+			<arg line="${xmlfile}"/>
+		</java>
+	</target>
+
+	<target name="graph-batch" depends="compile">
+		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.BatchGraph">
+			<classpath refid="classpath"/>
+			<arg line="${xmlfile}"/>
+		</java>
+	</target>
+</project>

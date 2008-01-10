@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+    <properties>
+        <author email="rpelisse@users.sourceforge.net">PELISSE Romain</author>
+        <title>MBean Monitor project</title>
+    </properties>
+    <body>
+    	<section name="History">
+    		<p>This small tool has been designed in 2003 to offer a simple way to monitor
+    			a JBoss Application Server (JBoss AS) instance. It is based, as the application
+    			server, on the JMX architecture.</p>
+    		<p>As it was laying dormant on the author computer, it has been decided to release
+    			it under as a free software so that other people may use it and may it make it
+    			grow.</p>
+    	</section>
+    	
+    </body>
+</document>

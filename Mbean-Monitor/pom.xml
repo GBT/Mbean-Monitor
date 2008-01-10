@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.sourceforge.mbeanmonitoring</groupId>
+  <artifactId>mbeanmonitoring</artifactId>
+  <name>MBean-Monitoring</name>
+  <version>1.0-alpha</version>
+  <description>TODO</description>
+  	<url>http://mbean-monitor.sourceforge.net/</url>
+  	<issueManagement>
+    	<url>http://sourceforge.net/tracker/?group_id=107784</url>
+	</issueManagement>
+	<inceptionYear>2003</inceptionYear>
+	<!-- 
+  	<mailingLists>
+		<mailingList>
+  			<name>XRadar development</name>
+			<subscribe>https://lists.sourceforge.net/lists/listinfo/xradar-developer</subscribe>
+			<unsubscribe>https://lists.sourceforge.net/lists/listinfo/xradar-developer</unsubscribe>
+			<archive>http://sourceforge.net/mailarchive/forum.php?forum_name=xradar-developer</archive>
+		</mailingList>
+	</mailingLists>
+	 -->
+	<developers>
+		<developer>
+		  <name>Laurent Le Grandois</name>
+		  <email>laurent.le.grandois@gmail.com</email>
+		</developer>
+		<developer>
+		  <name>Gilles Bardouillet</name>
+		  <email>gilles.bardouillet@gmail.com</email>
+		</developer>
+		<developer>
+		  <name>Romain Pelisse</name>
+		  <email>belaran@gmail.com</email>
+		</developer>
+  	</developers>
+
+  <licenses>
+    <license>
+      	<name>GPL License</name>
+      	<url>http://en.wikipedia.org/wiki/GNU_General_Public_License</url>
+		<comments>
+		<![CDATA[
+ This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+			]]>
+		</comments>
+    </license>
+  </licenses>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <forkMode>once</forkMode>
+          <skip>true</skip>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>castor-maven-plugin</artifactId>
+          <version>1.0</version>
+          <executions>
+	           <execution>
+	             <configuration>
+	                   <schema>src/main/config/jbossreportserver.xsd</schema>
+	                   <packaging>org.sourceforge.mbeanmonitoring.report.castor</packaging>
+	             </configuration>
+	           </execution>
+          </executions>
+       </plugin>
+
+    </plugins>
+  </build>
+
+	<dependencies>
+		<dependency>
+		    <groupId>castor</groupId>
+		    <artifactId>castor</artifactId>
+		    <version>0.9.5</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>jfree</groupId>
+		    <artifactId>jfreechart</artifactId>
+		    <version>1.0.8a</version>
+		</dependency>
+	
+		<!--  
+		mvn install:install-file -DgroupId=jboss -DartifactId=jboss-all-client -Dversion=4.0.5 -Dpackaging=jar -Dfile=${JBOSS_HOME}/client/jbossall-client.jar
+		
+		
+		 -->
+
+
+		<dependency>
+		    <groupId>jboss</groupId>
+		    <artifactId>jboss-all-client</artifactId>
+		    <version>4.0.5</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.9</version>
+		</dependency>
+		
+		<!--  TODO: This dependancy is NOT on the maven repo, you have to install it manually:
+				mvn 	install:install-file -DgroupId=jboss -DartifactId=jboss-management -Dversion=4.0.5 -Dpackaging=jar -Dfile=${JBOSS_HOME}/server/default/lib/jboss-management.jar
+		
+			 -->
+		 <dependency>
+		    <groupId>jboss</groupId>
+		    <artifactId>jboss-management</artifactId>
+		    <version>4.0.5</version>
+		</dependency>
+		
+	</dependencies>
+
+  	<reporting>
+  		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<xdocDirectory>${basedir}/src/site/xdocs</xdocDirectory>
+	           </configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<linkXref>true</linkXref>
+					<sourceEncoding>utf-8</sourceEncoding>
+					<minimumTokens>25</minimumTokens>
+					<targetJdk>1.5</targetJdk>
+					<rulesets>
+						<ruleset>src/main/config/programming-rules.xml</ruleset>
+                	</rulesets>
+                	<excludes>
+                		<!--  excluding classes generated by castor -->
+			            <exclude>org/sourceforge/mbeanmonitoring/report/castor**/*.java</exclude>
+			        </excludes>
+				</configuration>
+			</plugin>
+			
+			<!-- 
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-project-info-reports-plugin</artifactId>
+              	<configuration>
+                	<webAccessUrl>http://xradar.cvs.sourceforge.net/xradar/</webAccessUrl>
+                	<anonymousConnection>cvs -d:pserver:anonymous@xradar.cvs.sourceforge.net:/cvsroot/xradar</anonymousConnection>
+                	<developerConnection>cvs -d:pserver:username@xradar.cvs.sourceforge.net:/cvsroot/xradar</developerConnection>
+                </configuration>
+		        <reportSets>
+                     <reportSet>
+                        <reports>
+                           <report>dependencies</report>
+                           <report>project-team</report>
+                           <report>mailing-list</report>
+                           <report>issue-tracking</report>
+                           <report>license</report>
+                           <report>scm</report> This one doesn't work ?
+                        </reports>
+                     </reportSet>
+                  </reportSets>
+	      	</plugin>
+	       -->
+		</plugins>
+	</reporting>
+
+</project>

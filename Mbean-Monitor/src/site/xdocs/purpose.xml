@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+    <properties>
+        <author email="rpelisse@users.sourceforge.net">PELISSE Romain</author>
+        <title>MBean Monitor project</title>
+    </properties>
+    <body>
+    	<section name="Purpose">
+	    	<p>
+	    		The purpose of this project is to offer a graphical view of any mbean
+	    		activity inside a Java application, such as JBoss, using a valid implementation
+	    		of the JMX specification. 
+	    	</p>
+	    	<p>TODO: Insert snapshot here
+	    	</p>
+    	</section>
+    </body>
+</document>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<project name="MBeanMonitor">
+<!--
+    <organizationLogo href="http://sourceforge.net/sflogo.php?group_id=56262&amp;type=5"/>
+    <breadcrumbs>
+      <item name="SourceForge" 	href="http://www.sourceforge.net/"/>
+      <item name="XRadar" 			href="http://xradar.sourceforge.net/"/>
+    </breadcrumbs>
+-->
+	<bannerLeft>
+		<name>Maven</name>
+		<src>images/sflogo.png</src>
+		<href>http://sourceforge.net/projects/xradar</href>
+	</bannerLeft>
+  	<bannerRight>
+    	<src>images/logo.png</src>
+    	<href>http://xradar.sourceforge.net/</href>
+  	</bannerRight>
+  	<body>
+  	
+	    <links>
+		      <item name="SourceForge.net Project Page"
+		            href="http://sourceforge.net/projects/xradar" />
+		      <item name="Hosted by SourceForge"
+		            href="http://sourceforge.net" />
+	    </links>
+
+		<menu name="About">
+	            <item name="Quick history" href="/history.html"/>
+	            <item name="Purpose" href="/purpose.html"/>
+	     </menu>
+     	<menu name="How to run">
+            <item 	name="Ant Usage" 
+            		href="/configuration.html"/>
+        </menu>
+ 		<menu ref="reports"/>
+
+    </body>
+</project>
+
