@@ -21,15 +21,13 @@
 -->
 <project name="MBean-Monitor" default="compile">
 
-	<property 	environment="env"/>
-	<property 	name="JBOSS_HOME" 
-				value="${env.JBOSS_HOME}"/>
-	<property 	name="xmlfile" 
-				value="src/main/config/jbossreportdgddi.xml"/>
+	<property environment="env"/>
+	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}"/>
+	<property name="xmlfile" value="src/main/config/jbossreportdefault.xml"/>
+	<!--property name="xmlfile" value="/data/Work/MBean-Monitor/jbossreportdgddi.xml"/-->
 				
 	<property environment="env"/>
 	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}"/>
-	<property name="xmlfile" value="src/main/config/jbossreportdgddi.xml"/>
 	<property name="version" value="1.0-alpha"/>
 	
 	<path id="classpath">
@@ -61,7 +59,7 @@
 
 	<target name="init" >
 		<mkdir dir="classes" />
-		<mkdir dir="bin" />
+		<mkdir dir="target" />
 		<mkdir dir="javadoc" />
 	</target>
 
