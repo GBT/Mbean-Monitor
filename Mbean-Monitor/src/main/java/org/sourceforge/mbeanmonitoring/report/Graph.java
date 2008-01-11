@@ -46,14 +46,11 @@ import org.jfree.ui.RefineryUtilities;
 
 public class Graph extends JFrame implements Runnable {
 
-
 	static final long serialVersionUID = 1L;
 
 	private static void displayGraphFromCapture(Capture capture) {
 		String theCharSep = capture.params.getSeparateur();
-		String file = capture.params.getGenereTo()
-				+ System.getProperty("file.separator")
-				+ Capture.CURRENT_DIRECTORY;
+		String file = capture.params.getGenereTo() + System.getProperty("file.separator") + Capture.CURRENT_DIRECTORY;
 		int wait = capture.params.getDelay();
 		long delay = new Long(wait).longValue();
 		delay = delay * 1000;
@@ -64,8 +61,7 @@ public class Graph extends JFrame implements Runnable {
 		if (f.isDirectory()) {
 			String[] children = f.list();
 			for (int i = 0; i < children.length; i++) {
-				String fileName = file + System.getProperty("file.separator")
-						+ children[i];
+				String fileName = file + System.getProperty("file.separator") + children[i];
 				graphs.add(new Graph(fileName, delay, theCharSep));
 			}
 		}
@@ -77,6 +73,7 @@ public class Graph extends JFrame implements Runnable {
 			graph.setVisible(true);
 		}
 	}
+
 	public static void main(String[] args) {
 		Capture cap = null;
 		Capture.isGraphRuntime = true;
@@ -90,6 +87,7 @@ public class Graph extends JFrame implements Runnable {
 			Graph.displayGraphFromCapture(cap);
 		}
 	}
+
 	public String dir = null;
 
 	BufferedReader in;
@@ -117,8 +115,7 @@ public class Graph extends JFrame implements Runnable {
 			String column;
 			while (st.hasMoreElements()) {
 				column = (String) st.nextToken();
-				TimeSeries serie = new TimeSeries(column,
-						Millisecond.class);
+				TimeSeries serie = new TimeSeries(column, Millisecond.class);
 				timeSeriesVector.add(serie);
 				timeseriescollection.addSeries(serie);
 			}
@@ -132,8 +129,8 @@ public class Graph extends JFrame implements Runnable {
 		while (st.hasMoreElements()) {
 			title = (String) st.nextToken();
 		}
-		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(title,
-				"Time", "Value", timeseriescollection, true, true, false);
+		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(title, "Time", "Value", timeseriescollection, true,
+				true, false);
 
 		XYPlot xyplot = jfreechart.getXYPlot();
 		ValueAxis valueaxis = xyplot.getDomainAxis();
@@ -173,8 +170,7 @@ public class Graph extends JFrame implements Runnable {
 
 		try {
 
-			SimpleDateFormat formatter = new SimpleDateFormat(
-					"dd/MM/yyyy HH:mm:ss");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			java.util.Date d = formatter.parse(date + " " + heure);
 			m = new Millisecond(d);
 

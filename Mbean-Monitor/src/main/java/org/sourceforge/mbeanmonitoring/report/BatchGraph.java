@@ -1,23 +1,23 @@
 package org.sourceforge.mbeanmonitoring.report;
 
 /**
-**      Authors:
-**              Laurent Le Grandois <Laurent.Le.Grandois@gmail.com>
-**              Gilles Bardouillet  <Gilles.Bardouillet@gmail.com>
-**
-**  This program is free software; you can redistribute it and/or modify
-** it under the terms of the GNU General Public License as published by
-**  the Free Software Foundation; either version 2 of the License, or
-**  (at your option) any later version.
-**
-** This program is distributed in the hope that it will be useful,
-**  but WITHOUT ANY WARRANTY; without even the implied warranty of
-**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-**  GNU General Public License for more details.
-**
-**  You should have received a copy of the GNU General Public License
-** along with this program; if not, write to the Free Software
-**
+ **      Authors:
+ **              Laurent Le Grandois <Laurent.Le.Grandois@gmail.com>
+ **              Gilles Bardouillet  <Gilles.Bardouillet@gmail.com>
+ **
+ **  This program is free software; you can redistribute it and/or modify
+ ** it under the terms of the GNU General Public License as published by
+ **  the Free Software Foundation; either version 2 of the License, or
+ **  (at your option) any later version.
+ **
+ ** This program is distributed in the hope that it will be useful,
+ **  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ **  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ **  GNU General Public License for more details.
+ **
+ **  You should have received a copy of the GNU General Public License
+ ** along with this program; if not, write to the Free Software
+ **
  */
 
 import java.awt.BorderLayout;
@@ -28,7 +28,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
@@ -41,20 +40,16 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.sourceforge.mbeanmonitoring.report.castor.ServerParam;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
 public class BatchGraph extends JFrame {
 
-	static final long serialVersionUID = 1L ;
+	static final long serialVersionUID = 1L;
 	protected Vector<TimeSeries> _series;
 
 	protected String _file;
@@ -62,7 +57,6 @@ public class BatchGraph extends JFrame {
 	protected String _title;
 
 	public BatchGraph(String file) throws StringIndexOutOfBoundsException {
-		System.out.println("Traitement fichier : " + file);
 
 		this._file = file;
 		this.setForeground(Color.black);
@@ -90,7 +84,6 @@ public class BatchGraph extends JFrame {
 			st.nextToken();
 			while (st.hasMoreElements()) {
 				String column = (String) st.nextToken();
-				System.out.println("Value  " + column);
 				this._series.add(new TimeSeries(column, Millisecond.class));
 			}
 		}
@@ -101,7 +94,7 @@ public class BatchGraph extends JFrame {
 				if (line != null) {
 					StringTokenizer st = new StringTokenizer(line, ";");
 					st.nextToken();
-					String toparse = (String) st.nextToken(); 
+					String toparse = (String) st.nextToken();
 
 					Date measure = formatter.parse(toparse);
 
@@ -128,14 +121,8 @@ public class BatchGraph extends JFrame {
 			TimeSeries serie = (TimeSeries) this._series.get(i);
 			timeseriescollection.addSeries(serie);
 		}
-		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(this._title, "Time", "Value", timeseriescollection, true, true,
-				false);
-
-		XYPlot xyplot = jfreechart.getXYPlot();
-		ValueAxis valueaxis = xyplot.getDomainAxis();
-		valueaxis.setAutoRange(true);
-		valueaxis.setFixedAutoRange(60000D);
-		valueaxis = xyplot.getRangeAxis();
+		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(this._title, "Time", "Value", timeseriescollection,
+				true, true, false);
 
 		JPanel jpanel = new JPanel(new BorderLayout());
 		ChartPanel chartpanel = new ChartPanel(jfreechart);
@@ -152,18 +139,10 @@ public class BatchGraph extends JFrame {
 			System.exit(1);
 		}
 
-		try {
-			ServerParam custoParams = new ServerParam();
-			FileReader fileReader = null;
-			try {
-				fileReader = new FileReader(args[0]);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			custoParams = ServerParam.unmarshal(fileReader);
-			String dir = custoParams.getGenereTo() + System.getProperty("file.separator") + Capture.CURRENT_DIRECTORY;
-			File fdir = new File(dir);
+		String dir = args[0];
+		System.out.println(dir);
+		File fdir = new File(dir);
+		if (fdir.isDirectory()) {
 			File[] files = fdir.listFiles();
 			for (int f = 0; f < files.length; f++) {
 				String file = files[f].getAbsolutePath();
@@ -176,9 +155,8 @@ public class BatchGraph extends JFrame {
 					continue;
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			System.err.println("ERROR : " + dir + " is not a directory");
 		}
 	}
-
 }
