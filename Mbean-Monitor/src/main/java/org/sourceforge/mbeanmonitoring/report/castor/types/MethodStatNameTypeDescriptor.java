@@ -1,5 +1,5 @@
 /*
- * This class was automatically generated with 
+ * This class was automatically generated with
  * <a href="http://www.castor.org">Castor 0.9.4.3</a>, using an XML
  * Schema.
  * $Id$
@@ -14,7 +14,7 @@ package org.sourceforge.mbeanmonitoring.report.castor.types;
 
 /**
  * Class MethodStatNameTypeDescriptor.
- * 
+ *
  * @version $Revision$ $Date$
  */
 public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XMLClassDescriptorImpl {
@@ -65,7 +65,7 @@ public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XML
     public org.exolab.castor.mapping.AccessMode getAccessMode()
     {
         return null;
-    } //-- org.exolab.castor.mapping.AccessMode getAccessMode() 
+    } //-- org.exolab.castor.mapping.AccessMode getAccessMode()
 
     /**
      * Method getExtends
@@ -73,7 +73,7 @@ public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XML
     public org.exolab.castor.mapping.ClassDescriptor getExtends()
     {
         return null;
-    } //-- org.exolab.castor.mapping.ClassDescriptor getExtends() 
+    } //-- org.exolab.castor.mapping.ClassDescriptor getExtends()
 
     /**
      * Method getIdentity
@@ -81,7 +81,7 @@ public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XML
     public org.exolab.castor.mapping.FieldDescriptor getIdentity()
     {
         return identity;
-    } //-- org.exolab.castor.mapping.FieldDescriptor getIdentity() 
+    } //-- org.exolab.castor.mapping.FieldDescriptor getIdentity()
 
     /**
      * Method getJavaClass
@@ -89,7 +89,7 @@ public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XML
     public java.lang.Class getJavaClass()
     {
         return org.sourceforge.mbeanmonitoring.report.castor.types.MethodStatNameType.class;
-    } //-- java.lang.Class getJavaClass() 
+    } //-- java.lang.Class getJavaClass()
 
     /**
      * Method getNameSpacePrefix
@@ -97,7 +97,7 @@ public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XML
     public java.lang.String getNameSpacePrefix()
     {
         return nsPrefix;
-    } //-- java.lang.String getNameSpacePrefix() 
+    } //-- java.lang.String getNameSpacePrefix()
 
     /**
      * Method getNameSpaceURI
@@ -105,7 +105,7 @@ public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XML
     public java.lang.String getNameSpaceURI()
     {
         return nsURI;
-    } //-- java.lang.String getNameSpaceURI() 
+    } //-- java.lang.String getNameSpaceURI()
 
     /**
      * Method getValidator
@@ -113,7 +113,7 @@ public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XML
     public org.exolab.castor.xml.TypeValidator getValidator()
     {
         return this;
-    } //-- org.exolab.castor.xml.TypeValidator getValidator() 
+    } //-- org.exolab.castor.xml.TypeValidator getValidator()
 
     /**
      * Method getXMLName
@@ -121,6 +121,6 @@ public class MethodStatNameTypeDescriptor extends org.exolab.castor.xml.util.XML
     public java.lang.String getXMLName()
     {
         return xmlName;
-    } //-- java.lang.String getXMLName() 
+    } //-- java.lang.String getXMLName()
 
 }

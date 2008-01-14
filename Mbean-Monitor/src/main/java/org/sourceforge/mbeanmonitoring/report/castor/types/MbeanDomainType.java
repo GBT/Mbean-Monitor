@@ -292,8 +292,7 @@ public class MbeanDomainType implements java.io.Serializable {
     } //-- java.util.Hashtable init()
 
     /**
-     * Method toString
-     * Returns the String representation of this
+     * Method toStringReturns the String representation of this
      * MbeanDomainType
      */
     public java.lang.String toString()
@@ -302,8 +301,7 @@ public class MbeanDomainType implements java.io.Serializable {
     } //-- java.lang.String toString()
 
     /**
-     * Method valueOf
-     * Returns a new MbeanDomainType based on the
+     * Method valueOfReturns a new MbeanDomainType based on the
      * given String value.
      *
      * @param string
