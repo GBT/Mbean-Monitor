@@ -1,5 +1,5 @@
 /*
- * This class was automatically generated with 
+ * This class was automatically generated with
  * <a href="http://www.castor.org">Castor 0.9.4.3</a>, using an XML
  * Schema.
  * $Id$
@@ -11,19 +11,12 @@ package org.sourceforge.mbeanmonitoring.report.castor;
  //- Imported classes and packages -/
 //---------------------------------/
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Serializable;
-import java.io.Writer;
-import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
-import org.exolab.castor.xml.ValidationException;
-import org.xml.sax.ContentHandler;
 
 /**
  * Class Element.
- * 
+ *
  * @version $Revision$ $Date$
  */
 public class Element implements java.io.Serializable {
@@ -43,6 +36,9 @@ public class Element implements java.io.Serializable {
      //- Constructors -/
     //----------------/
 
+    /**
+     *
+     */
     public Element() {
         super();
     } //-- org.sourceforge.mbeanmonitoring.report.castor.Element()
@@ -54,13 +50,13 @@ public class Element implements java.io.Serializable {
 
     /**
      * Returns the value of field 'name'.
-     * 
+     *
      * @return the value of field 'name'.
      */
     public java.lang.String getName()
     {
         return this._name;
-    } //-- java.lang.String getName() 
+    } //-- java.lang.String getName()
 
     /**
      * Method isValid
@@ -74,61 +70,69 @@ public class Element implements java.io.Serializable {
             return false;
         }
         return true;
-    } //-- boolean isValid() 
+    } //-- boolean isValid()
 
     /**
      * Method marshal
-     * 
+     *
      * @param out
+     * @throws org.exolab.castor.xml.MarshalException
+     * @throws org.exolab.castor.xml.ValidationException
      */
     public void marshal(java.io.Writer out)
         throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
     {
-        
+
         Marshaller.marshal(this, out);
-    } //-- void marshal(java.io.Writer) 
+    } //-- void marshal(java.io.Writer)
 
     /**
      * Method marshal
-     * 
+     *
      * @param handler
+     * @throws java.io.IOException
+     * @throws org.exolab.castor.xml.MarshalException
+     * @throws org.exolab.castor.xml.ValidationException
      */
     public void marshal(org.xml.sax.ContentHandler handler)
         throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
     {
-        
+
         Marshaller.marshal(this, handler);
-    } //-- void marshal(org.xml.sax.ContentHandler) 
+    } //-- void marshal(org.xml.sax.ContentHandler)
 
     /**
      * Sets the value of field 'name'.
-     * 
+     *
      * @param name the value of field 'name'.
      */
     public void setName(java.lang.String name)
     {
         this._name = name;
-    } //-- void setName(java.lang.String) 
+    } //-- void setName(java.lang.String)
 
     /**
      * Method unmarshal
-     * 
+     *
      * @param reader
+     * @throws org.exolab.castor.xml.MarshalException
+     * @throws org.exolab.castor.xml.ValidationException
      */
     public static org.sourceforge.mbeanmonitoring.report.castor.Element unmarshal(java.io.Reader reader)
         throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
     {
         return (org.sourceforge.mbeanmonitoring.report.castor.Element) Unmarshaller.unmarshal(org.sourceforge.mbeanmonitoring.report.castor.Element.class, reader);
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Element unmarshal(java.io.Reader) 
+    } //-- org.sourceforge.mbeanmonitoring.report.castor.Element unmarshal(java.io.Reader)
 
     /**
      * Method validate
+     * @throws org.exolab.castor.xml.ValidationException
      */
     public void validate()
         throws org.exolab.castor.xml.ValidationException
     {
         org.exolab.castor.xml.Validator validator = new org.exolab.castor.xml.Validator();
         validator.validate(this);
-    } //-- void validate() 
+    } //-- void validate()
 
 }
