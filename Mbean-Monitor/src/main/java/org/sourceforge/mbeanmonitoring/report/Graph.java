@@ -22,7 +22,6 @@ package org.sourceforge.mbeanmonitoring.report;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Paint;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
