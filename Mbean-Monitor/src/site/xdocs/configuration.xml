@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <document>
-    <properties>
-        <author email="rpelisse@users.sourceforge.net">PELISSE Romain</author>
-        <title>MBean Monitor project</title>
-    </properties>
-    <body>
-    	<section name="Configuration">
-	    	<p>
-	    	TODO !
-	    	</p>
-	    </section>
-	 </body>
- </document>
+	<properties>
+		<author email="le-grandois@users.sourceforge.net">
+			Le Grandois Laurent
+		</author>
+		<title>MBean Monitor project</title>
+	</properties>
+	<body>
+		<section name="Configuration">
+			<p>
+				You had to set three properties in build.xml file :
+				<li>
+					JBOSS_HOME : Installation directory of JBoss (can be
+					env.JBOSS_HOME if JBOSS_HOME variable is set)
+				</li>
+				<li>
+					xmlfile : The absolute path of the xml file
+					containing the mbeans and attributes to monitor
+				</li>
+				<li>
+					rep : The absolute path where to store generated reports
+				</li>
+			</p>
+		</section>
+		<section name="Ant targets">
+			<p>
+				<li>
+					Clean : delete all classes in classes directory.
+				</li>
+				<li>
+					Castor : This project uses Castor Binding. When xsd file is changed, Castor Java classes must be re-generated.
+				</li>
+				<li>Clean-Castor</li>
+				<li>Compile</li>
+				<li>run</li>
+				<li>graph</li>
+				<li>graph-batch</li>
+			</p>
+		</section>
+	</body>
+</document>
