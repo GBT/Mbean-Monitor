@@ -1,5 +1,5 @@
 /*
- * This class was automatically generated with 
+ * This class was automatically generated with
  * <a href="http://www.castor.org">Castor 0.9.4.3</a>, using an XML
  * Schema.
  * $Id$
@@ -15,7 +15,7 @@ import java.util.Hashtable;
 
 /**
  * Class MethodStatNameType.
- * 
+ *
  * @version $Revision$ $Date$
  */
 public class MethodStatNameType implements java.io.Serializable {
@@ -143,7 +143,7 @@ public class MethodStatNameType implements java.io.Serializable {
     public static java.util.Enumeration enumerate()
     {
         return _memberTable.elements();
-    } //-- java.util.Enumeration enumerate() 
+    } //-- java.util.Enumeration enumerate()
 
     /**
      * Method getTypeReturns the type of this MethodStatNameType
@@ -151,7 +151,7 @@ public class MethodStatNameType implements java.io.Serializable {
     public int getType()
     {
         return this.type;
-    } //-- int getType() 
+    } //-- int getType()
 
     /**
      * Method init
@@ -168,7 +168,7 @@ public class MethodStatNameType implements java.io.Serializable {
         members.put("high", VALUE_6);
         members.put("current", VALUE_7);
         return members;
-    } //-- java.util.Hashtable init() 
+    } //-- java.util.Hashtable init()
 
     /**
      * Method toStringReturns the String representation of this
@@ -177,12 +177,12 @@ public class MethodStatNameType implements java.io.Serializable {
     public java.lang.String toString()
     {
         return this.stringValue;
-    } //-- java.lang.String toString() 
+    } //-- java.lang.String toString()
 
     /**
      * Method valueOfReturns a new MethodStatNameType based on the
      * given String value.
-     * 
+     *
      * @param string
      */
     public static org.sourceforge.mbeanmonitoring.report.castor.types.MethodStatNameType valueOf(java.lang.String string)
@@ -194,6 +194,6 @@ public class MethodStatNameType implements java.io.Serializable {
             throw new IllegalArgumentException(err);
         }
         return (MethodStatNameType) obj;
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.types.MethodStatNameType valueOf(java.lang.String) 
+    } //-- org.sourceforge.mbeanmonitoring.report.castor.types.MethodStatNameType valueOf(java.lang.String)
 
 }
