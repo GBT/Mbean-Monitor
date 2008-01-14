@@ -20,8 +20,8 @@ package org.sourceforge.mbeanmonitoring.report;
  **
  */
 
+import java.util.ArrayList;
 import java.util.Properties;
-import java.util.Vector;
 
 import javax.management.InstanceNotFoundException;
 import javax.management.ObjectName;
@@ -145,7 +145,7 @@ public class MServer implements Runnable {
 
 	private String[] getEntete(int index) {
 		String[] attributs = getAttributs(index);
-		Vector<String> result = new Vector<String>(attributs.length);
+		ArrayList<String> result = new ArrayList<String>(attributs.length);
 		for (int i = 0; i < attributs.length; i++) {
 			Stat[] stats = (Stat[]) this.infos[index].get(attributs[i]);
 
@@ -164,7 +164,7 @@ public class MServer implements Runnable {
 			}
 		}
 		attributs = new String[result.size()];
-		result.copyInto(attributs);
+		result.toArray(attributs);
 		return attributs;
 	}
 
@@ -181,6 +181,9 @@ public class MServer implements Runnable {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public void logColumnNames() {
 		for (int i = 0; i < this.infos.length; i++) {
 			String appender = this.infos[i].getProperty(Capture.KEY_APPENDER);
