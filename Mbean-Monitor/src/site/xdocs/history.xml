@@ -10,9 +10,9 @@
     			a JBoss Application Server (JBoss AS) instance. It is based, as the application
     			server, on the JMX architecture.</p>
     		<p>As it was laying dormant on the author computer, it has been decided to release
-    			it under as a free software so that other people may use it and may it make it
+    			it as a free software so that other people may use it and may it make it
     			grow.</p>
     	</section>
-    	
+
     </body>
 </document>
