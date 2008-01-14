@@ -32,10 +32,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -49,13 +49,30 @@ import org.jfree.data.time.TimeSeriesCollection;
 
 public class BatchGraph extends JFrame {
 
+	/**
+	 *
+	 */
 	static final long serialVersionUID = 1L;
-	protected Vector<TimeSeries> _series;
 
+	/**
+	 * Was a Vector
+	 */
+	protected ArrayList<TimeSeries> _series;
+
+	/**
+	 *
+	 */
 	protected String _file;
 
+	/**
+	 *
+	 */
 	protected String _title;
 
+	/**
+	 * @param file
+	 * @throws StringIndexOutOfBoundsException
+	 */
 	public BatchGraph(String file) throws StringIndexOutOfBoundsException {
 
 		this._file = file;
@@ -67,9 +84,15 @@ public class BatchGraph extends JFrame {
 		int deb = file.lastIndexOf(File.separator) + 1;
 		int fin = file.indexOf('.');
 		this._title = file.substring(deb, fin);
-		this._series = new Vector<TimeSeries>();
+		this._series = new ArrayList<TimeSeries>();
 	}
 
+	/**
+	 * @throws NoSuchElementException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public void fill() throws NoSuchElementException, FileNotFoundException, IOException, ParseException {
 
 		TimeSeriesCollection timeseriescollection = new TimeSeriesCollection();
@@ -83,7 +106,7 @@ public class BatchGraph extends JFrame {
 			st.nextToken();
 			st.nextToken();
 			while (st.hasMoreElements()) {
-				String column = (String) st.nextToken();
+				String column = st.nextToken();
 				this._series.add(new TimeSeries(column, Millisecond.class));
 			}
 		}
@@ -94,14 +117,14 @@ public class BatchGraph extends JFrame {
 				if (line != null) {
 					StringTokenizer st = new StringTokenizer(line, ";");
 					st.nextToken();
-					String toparse = (String) st.nextToken();
+					String toparse = st.nextToken();
 
 					Date measure = formatter.parse(toparse);
 
 					int c = 0;
 					while (st.hasMoreElements()) {
-						String column = (String) st.nextToken();
-						TimeSeries serie = (TimeSeries) this._series.get(c);
+						String column = st.nextToken();
+						TimeSeries serie = this._series.get(c);
 						serie.addOrUpdate(new Millisecond(measure), new Integer(column));
 						c++;
 					}
@@ -118,7 +141,7 @@ public class BatchGraph extends JFrame {
 			}
 		}
 		for (int i = 0; i < this._series.size(); i++) {
-			TimeSeries serie = (TimeSeries) this._series.get(i);
+			TimeSeries serie = this._series.get(i);
 			timeseriescollection.addSeries(serie);
 		}
 		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(this._title, "Time", "Value", timeseriescollection,
@@ -133,6 +156,9 @@ public class BatchGraph extends JFrame {
 		setContentPane(jpanel);
 	}
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		if (args.length < 1) {
 			System.err.println("Usage : java BatchGraph repertoire");
@@ -150,7 +176,7 @@ public class BatchGraph extends JFrame {
 					BatchGraph graph = new BatchGraph(file);
 					graph.fill();
 					graph.pack();
-					graph.show();
+                    graph.setVisible(true);
 				} catch (Exception e) {
 					continue;
 				}
