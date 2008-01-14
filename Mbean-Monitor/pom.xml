@@ -8,10 +8,10 @@
   <description>TODO</description>
   	<url>http://mbean-monitor.sourceforge.net/</url>
   	<issueManagement>
-    	<url>http://sourceforge.net/tracker/?group_id=107784</url>
+    	<url>https://sourceforge.net/tracker/?group_id=214352</url>
 	</issueManagement>
 	<inceptionYear>2003</inceptionYear>
-	<!-- 
+	<!--
   	<mailingLists>
 		<mailingList>
   			<name>XRadar development</name>
@@ -109,20 +109,16 @@ along with this program; if not, write to the Free Software
 		    <artifactId>castor</artifactId>
 		    <version>0.9.5</version>
 		</dependency>
-		
+
 		<dependency>
 		    <groupId>jfree</groupId>
 		    <artifactId>jfreechart</artifactId>
 		    <version>1.0.8a</version>
 		</dependency>
-	
-		<!--  
+
+		<!-- TODO This dependancy is NOT on the maven repo, you have to install it manually:
 		mvn install:install-file -DgroupId=jboss -DartifactId=jboss-all-client -Dversion=4.0.5 -Dpackaging=jar -Dfile=${JBOSS_HOME}/client/jbossall-client.jar
-		
-		
 		 -->
-
-
 		<dependency>
 		    <groupId>jboss</groupId>
 		    <artifactId>jboss-all-client</artifactId>
@@ -134,17 +130,16 @@ along with this program; if not, write to the Free Software
 		    <artifactId>log4j</artifactId>
 		    <version>1.2.9</version>
 		</dependency>
-		
-		<!--  TODO: This dependancy is NOT on the maven repo, you have to install it manually:
-				mvn 	install:install-file -DgroupId=jboss -DartifactId=jboss-management -Dversion=4.0.5 -Dpackaging=jar -Dfile=${JBOSS_HOME}/server/default/lib/jboss-management.jar
-		
+
+		<!--  TODO This dependancy is NOT on the maven repo, you have to install it manually:
+				mvn install:install-file -DgroupId=jboss -DartifactId=jboss-management -Dversion=4.0.5 -Dpackaging=jar -Dfile=${JBOSS_HOME}/server/default/lib/jboss-management.jar
 			 -->
 		 <dependency>
 		    <groupId>jboss</groupId>
 		    <artifactId>jboss-management</artifactId>
 		    <version>4.0.5</version>
 		</dependency>
-		
+
 	</dependencies>
 
   	<reporting>
@@ -156,7 +151,7 @@ along with this program; if not, write to the Free Software
 					<xdocDirectory>${basedir}/src/site/xdocs</xdocDirectory>
 	           </configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
@@ -174,8 +169,22 @@ along with this program; if not, write to the Free Software
 			        </excludes>
 				</configuration>
 			</plugin>
-			
-			<!-- 
+
+			<plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-jxr-plugin</artifactId>
+         	</plugin>
+
+         	<plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-javadoc-plugin</artifactId>
+            	<configuration>
+               		<charset>UTF-8</charset>
+               		<quiet>true</quiet>
+            	</configuration>
+         	</plugin>
+
+			<!--
 			<plugin>
 		        <groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-project-info-reports-plugin</artifactId>
