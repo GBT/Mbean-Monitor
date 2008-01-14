@@ -73,6 +73,9 @@ public class Graph extends JFrame implements Runnable {
 		}
 	}
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Capture cap = null;
 		Capture.isGraphRuntime = true;
@@ -99,6 +102,11 @@ public class Graph extends JFrame implements Runnable {
 
 	public long wait = 0;
 
+	/**
+	 * @param fileName
+	 * @param delay
+	 * @param sep
+	 */
 	public Graph(String fileName, long delay, String sep) {
 		super(fileName);
 		this.wait = delay;
