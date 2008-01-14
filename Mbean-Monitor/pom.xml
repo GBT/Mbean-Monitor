@@ -7,6 +7,12 @@
   <version>1.0-alpha</version>
   <description>TODO</description>
   	<url>http://mbean-monitor.sourceforge.net/</url>
+  	<distributionManagement>
+    	<site>
+      		<id>mbeanmonitor-sf-website</id>
+      		<url>scp://shell.sourceforge.net/home/groups/m/mb/mbean-monitor/htdocs/</url>
+    	</site>
+  	</distributionManagement>
   	<issueManagement>
     	<url>https://sourceforge.net/tracker/?group_id=214352</url>
 	</issueManagement>
