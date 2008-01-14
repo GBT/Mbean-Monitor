@@ -9,27 +9,27 @@
 	<body>
 		<section name="Configuration">
 			<p>
-				You had to set three properties in build.xml file :
+				You had to set three properties in build.xml file:
 				<li>
-					JBOSS_HOME : Installation directory of JBoss (can be
+					JBOSS_HOME: Installation directory of JBoss (can be
 					env.JBOSS_HOME if JBOSS_HOME variable is set)
 				</li>
 				<li>
-					xmlfile : The absolute path of the xml file
+					xmlfile: The absolute path of the xml file
 					containing the mbeans and attributes to monitor
 				</li>
 				<li>
-					rep : The absolute path where to store generated reports
+					rep: The absolute path where to store generated reports
 				</li>
 			</p>
 		</section>
 		<section name="Ant targets">
 			<p>
 				<li>
-					Clean : delete all classes in classes directory.
+					Clean: delete all classes in classes directory.
 				</li>
 				<li>
-					Castor : This project uses Castor Binding. When xsd file is changed, Castor Java classes must be re-generated.
+					Castor: This project uses Castor Binding. When xsd file is changed, Castor Java classes must be re-generated.
 				</li>
 				<li>Clean-Castor</li>
 				<li>Compile</li>
