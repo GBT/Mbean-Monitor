@@ -27,8 +27,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -55,7 +55,7 @@ public class Graph extends JFrame implements Runnable {
 		delay = delay * 1000;
 
 		File f = new File(file);
-		Vector<Graph> graphs = new Vector<Graph>();
+        ArrayList<Graph> graphs = new ArrayList<Graph>();
 
 		if (f.isDirectory()) {
 			String[] children = f.list();
@@ -66,7 +66,7 @@ public class Graph extends JFrame implements Runnable {
 		}
 
 		for (int i = 0; i < graphs.size(); i++) {
-			Graph graph = (Graph) graphs.get(i);
+			Graph graph = graphs.get(i);
 			graph.pack();
 			RefineryUtilities.centerFrameOnScreen(graph);
 			graph.setVisible(true);
@@ -98,7 +98,7 @@ public class Graph extends JFrame implements Runnable {
 	String sep = null;
 	TimeSeriesCollection timeseriescollection = new TimeSeriesCollection();
 
-	Vector<TimeSeries> timeSeriesVector = new Vector<TimeSeries>();
+	ArrayList<TimeSeries> timeSeriesVector = new ArrayList<TimeSeries>();
 
 	public long wait = 0;
 
@@ -121,7 +121,7 @@ public class Graph extends JFrame implements Runnable {
 
 			String column;
 			while (st.hasMoreElements()) {
-				column = (String) st.nextToken();
+				column = st.nextToken();
 				TimeSeries serie = new TimeSeries(column, Millisecond.class);
 				timeSeriesVector.add(serie);
 				timeseriescollection.addSeries(serie);
@@ -134,7 +134,7 @@ public class Graph extends JFrame implements Runnable {
 		StringTokenizer st = new StringTokenizer(fileName, "\\");
 		String title = null;
 		while (st.hasMoreElements()) {
-			title = (String) st.nextToken();
+			title = st.nextToken();
 		}
 		JFreeChart jfreechart = ChartFactory.createTimeSeriesChart(title, "Time", "Value", timeseriescollection, true,
 				true, false);
@@ -170,8 +170,8 @@ public class Graph extends JFrame implements Runnable {
 
 		StringTokenizer st = new StringTokenizer(line, this.sep);
 
-		String date = (String) st.nextToken();
-		String heure = (String) st.nextToken();
+		String date = st.nextToken();
+		String heure = st.nextToken();
 
 		Millisecond m = null;
 
@@ -194,8 +194,8 @@ public class Graph extends JFrame implements Runnable {
 
 		while (st.hasMoreElements()) {
 
-			timeSerie = (TimeSeries) timeSeriesVector.get(i++);
-			valueString = (String) st.nextToken();
+			timeSerie = timeSeriesVector.get(i++);
+			valueString = st.nextToken();
 			valueDouble = new Double(valueString);
 
 			// System.out.print( " " + valueDouble );
@@ -220,6 +220,7 @@ public class Graph extends JFrame implements Runnable {
 				Thread.sleep(this.wait);
 
 			} catch (Exception _) {
+                // TODO !
 			}
 	}
 }
