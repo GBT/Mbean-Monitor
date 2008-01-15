@@ -41,9 +41,6 @@ public class Capture {
 
 	ServerParam params;
 
-	private static String DEFAULT_XML_FILENAME = "config/jbossreportdefault.xml";
-	private static String CUSTO_XML_FILENAME = "config/jbossreportserver.xml";
-
 	static String KEY_MBEAN_FILE = "MBean.filename";
 	static String KEY_MBEAN_NAME = "name";
 	static String KEY_MBEAN_ATTRS = "attrs";
@@ -111,21 +108,14 @@ public class Capture {
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Get the parameters from the XML file ${xmlfile}, otherwise jbossreportdefault.xml
+	// Get the parameters from the XML file ${xmlfile}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private Reader getUserParameters(String fileName) {
-		if (fileName == null)
-			return this.getParametersFromDefaultXML();
-		else
+		if (fileName != null) {
 			return this.getParametersFromXMLFile(fileName);
-	}
-
-	private Reader getDefaultParameters() {
-		// Load XML default from JAR file
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(Capture.DEFAULT_XML_FILENAME);
-		InputStreamReader reader = new InputStreamReader(input);
-		return reader;
+		}
+		return null ;
 	}
 
 	private Reader getParametersFromXMLFile(String fileName) {
@@ -139,13 +129,6 @@ public class Capture {
 		return file;
 	}
 
-	private Reader getParametersFromDefaultXML() {
-		// Load XML default from JAR file
-		InputStream input = this.getClass().getClassLoader().getResourceAsStream(Capture.CUSTO_XML_FILENAME);
-		InputStreamReader reader = new InputStreamReader(input);
-		return reader;
-	}
-
 	public Capture() {
 		this(null);
 	}
@@ -154,21 +137,11 @@ public class Capture {
 		// Get the parameters from XML file(s)
 
 		try {
-			// read the default parameters
-
-			System.out.println("Read the default parameters from: " + Capture.DEFAULT_XML_FILENAME);
-			ServerParam defaultParams = new ServerParam();
-			defaultParams = ServerParam.unmarshal(getDefaultParameters());
-
 			// read the user parameters
 			System.out.println("Try to read the customized parameters from: " + fileName);
 			ServerParam custoParams = new ServerParam();
 			custoParams = ServerParam.unmarshal(getUserParameters(fileName));
 
-			// Add the default MBeans to the user parameters
-			Mbean[] defaultMbeans = defaultParams.getMbean();
-			for (int i = 0; i < defaultMbeans.length; i++)
-				custoParams.addMbean(defaultMbeans[i]);
 			custoParams.validate();
 
 			this.params = custoParams;
