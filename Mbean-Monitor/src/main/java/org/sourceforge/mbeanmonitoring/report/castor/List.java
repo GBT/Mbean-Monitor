@@ -1,6 +1,6 @@
 /*
  * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.4.3</a>, using an XML
+ * <a href="http://www.castor.org">Castor 1.1.2.1</a>, using an XML
  * Schema.
  * $Id$
  */
@@ -11,17 +11,8 @@ package org.sourceforge.mbeanmonitoring.report.castor;
  //- Imported classes and packages -/
 //---------------------------------/
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Serializable;
-import java.io.Writer;
-import java.util.Enumeration;
-import java.util.Vector;
-import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
-import org.exolab.castor.xml.ValidationException;
-import org.xml.sax.ContentHandler;
 
 /**
  * Class List.
@@ -36,12 +27,12 @@ public class List implements java.io.Serializable {
     //--------------------------/
 
     /**
-     * Field _name
+     * Field _name.
      */
     private java.lang.String _name;
 
     /**
-     * Field _elementList
+     * Field _elementList.
      */
     private java.util.Vector _elementList;
 
@@ -52,8 +43,8 @@ public class List implements java.io.Serializable {
 
     public List() {
         super();
-        _elementList = new Vector();
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.List()
+        this._elementList = new java.util.Vector();
+    }
 
 
       //-----------/
@@ -61,200 +52,251 @@ public class List implements java.io.Serializable {
     //-----------/
 
     /**
-     * Method addElement
+     * 
      * 
      * @param vElement
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void addElement(org.sourceforge.mbeanmonitoring.report.castor.Element vElement)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        _elementList.addElement(vElement);
-    } //-- void addElement(org.sourceforge.mbeanmonitoring.report.castor.Element) 
+    public void addElement(
+            final org.sourceforge.mbeanmonitoring.report.castor.Element vElement)
+    throws java.lang.IndexOutOfBoundsException {
+        this._elementList.addElement(vElement);
+    }
 
     /**
-     * Method addElement
+     * 
      * 
      * @param index
      * @param vElement
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void addElement(int index, org.sourceforge.mbeanmonitoring.report.castor.Element vElement)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        _elementList.insertElementAt(vElement, index);
-    } //-- void addElement(int, org.sourceforge.mbeanmonitoring.report.castor.Element) 
+    public void addElement(
+            final int index,
+            final org.sourceforge.mbeanmonitoring.report.castor.Element vElement)
+    throws java.lang.IndexOutOfBoundsException {
+        this._elementList.add(index, vElement);
+    }
 
     /**
-     * Method enumerateElement
+     * Method enumerateElement.
+     * 
+     * @return an Enumeration over all
+     * org.sourceforge.mbeanmonitoring.report.castor.Element element
      */
-    public java.util.Enumeration enumerateElement()
-    {
-        return _elementList.elements();
-    } //-- java.util.Enumeration enumerateElement() 
+    public java.util.Enumeration enumerateElement(
+    ) {
+        return this._elementList.elements();
+    }
 
     /**
-     * Method getElement
+     * Method getElement.
      * 
      * @param index
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     * @return the value of the
+     * org.sourceforge.mbeanmonitoring.report.castor.Element at the
+     * given index
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Element getElement(int index)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        //-- check bounds for index
-        if ((index < 0) || (index > _elementList.size())) {
-            throw new IndexOutOfBoundsException();
+    public org.sourceforge.mbeanmonitoring.report.castor.Element getElement(
+            final int index)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._elementList.size()) {
+            throw new IndexOutOfBoundsException("getElement: Index value '" + index + "' not in range [0.." + (this._elementList.size() - 1) + "]");
         }
         
-        return (org.sourceforge.mbeanmonitoring.report.castor.Element) _elementList.elementAt(index);
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Element getElement(int) 
+        return (org.sourceforge.mbeanmonitoring.report.castor.Element) _elementList.get(index);
+    }
 
     /**
-     * Method getElement
+     * Method getElement.Returns the contents of the collection in
+     * an Array.  <p>Note:  Just in case the collection contents
+     * are changing in another thread, we pass a 0-length Array of
+     * the correct type into the API call.  This way we <i>know</i>
+     * that the Array returned is of exactly the correct length.
+     * 
+     * @return this collection as an Array
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Element[] getElement()
-    {
-        int size = _elementList.size();
-        org.sourceforge.mbeanmonitoring.report.castor.Element[] mArray = new org.sourceforge.mbeanmonitoring.report.castor.Element[size];
-        for (int index = 0; index < size; index++) {
-            mArray[index] = (org.sourceforge.mbeanmonitoring.report.castor.Element) _elementList.elementAt(index);
-        }
-        return mArray;
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Element[] getElement() 
+    public org.sourceforge.mbeanmonitoring.report.castor.Element[] getElement(
+    ) {
+        org.sourceforge.mbeanmonitoring.report.castor.Element[] array = new org.sourceforge.mbeanmonitoring.report.castor.Element[0];
+        return (org.sourceforge.mbeanmonitoring.report.castor.Element[]) this._elementList.toArray(array);
+    }
 
     /**
-     * Method getElementCount
+     * Method getElementCount.
+     * 
+     * @return the size of this collection
      */
-    public int getElementCount()
-    {
-        return _elementList.size();
-    } //-- int getElementCount() 
+    public int getElementCount(
+    ) {
+        return this._elementList.size();
+    }
 
     /**
      * Returns the value of field 'name'.
      * 
-     * @return the value of field 'name'.
+     * @return the value of field 'Name'.
      */
-    public java.lang.String getName()
-    {
+    public java.lang.String getName(
+    ) {
         return this._name;
-    } //-- java.lang.String getName() 
+    }
 
     /**
-     * Method isValid
+     * Method isValid.
+     * 
+     * @return true if this object is valid according to the schema
      */
-    public boolean isValid()
-    {
+    public boolean isValid(
+    ) {
         try {
             validate();
-        }
-        catch (org.exolab.castor.xml.ValidationException vex) {
+        } catch (org.exolab.castor.xml.ValidationException vex) {
             return false;
         }
         return true;
-    } //-- boolean isValid() 
+    }
 
     /**
-     * Method marshal
+     * 
      * 
      * @param out
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
      */
-    public void marshal(java.io.Writer out)
-        throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
-        
+    public void marshal(
+            final java.io.Writer out)
+    throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, out);
-    } //-- void marshal(java.io.Writer) 
+    }
 
     /**
-     * Method marshal
+     * 
      * 
      * @param handler
+     * @throws java.io.IOException if an IOException occurs during
+     * marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
      */
-    public void marshal(org.xml.sax.ContentHandler handler)
-        throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
-        
+    public void marshal(
+            final org.xml.sax.ContentHandler handler)
+    throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, handler);
-    } //-- void marshal(org.xml.sax.ContentHandler) 
+    }
 
     /**
-     * Method removeAllElement
      */
-    public void removeAllElement()
-    {
-        _elementList.removeAllElements();
-    } //-- void removeAllElement() 
+    public void removeAllElement(
+    ) {
+        this._elementList.clear();
+    }
 
     /**
-     * Method removeElement
+     * Method removeElement.
+     * 
+     * @param vElement
+     * @return true if the object was removed from the collection.
+     */
+    public boolean removeElement(
+            final org.sourceforge.mbeanmonitoring.report.castor.Element vElement) {
+        boolean removed = _elementList.remove(vElement);
+        return removed;
+    }
+
+    /**
+     * Method removeElementAt.
      * 
      * @param index
+     * @return the element removed from the collection
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Element removeElement(int index)
-    {
-        java.lang.Object obj = _elementList.elementAt(index);
-        _elementList.removeElementAt(index);
+    public org.sourceforge.mbeanmonitoring.report.castor.Element removeElementAt(
+            final int index) {
+        java.lang.Object obj = this._elementList.remove(index);
         return (org.sourceforge.mbeanmonitoring.report.castor.Element) obj;
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Element removeElement(int) 
+    }
 
     /**
-     * Method setElement
+     * 
      * 
      * @param index
      * @param vElement
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void setElement(int index, org.sourceforge.mbeanmonitoring.report.castor.Element vElement)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        //-- check bounds for index
-        if ((index < 0) || (index > _elementList.size())) {
-            throw new IndexOutOfBoundsException();
+    public void setElement(
+            final int index,
+            final org.sourceforge.mbeanmonitoring.report.castor.Element vElement)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._elementList.size()) {
+            throw new IndexOutOfBoundsException("setElement: Index value '" + index + "' not in range [0.." + (this._elementList.size() - 1) + "]");
         }
-        _elementList.setElementAt(vElement, index);
-    } //-- void setElement(int, org.sourceforge.mbeanmonitoring.report.castor.Element) 
+        
+        this._elementList.set(index, vElement);
+    }
 
     /**
-     * Method setElement
      * 
-     * @param elementArray
+     * 
+     * @param vElementArray
      */
-    public void setElement(org.sourceforge.mbeanmonitoring.report.castor.Element[] elementArray)
-    {
+    public void setElement(
+            final org.sourceforge.mbeanmonitoring.report.castor.Element[] vElementArray) {
         //-- copy array
-        _elementList.removeAllElements();
-        for (int i = 0; i < elementArray.length; i++) {
-            _elementList.addElement(elementArray[i]);
+        _elementList.clear();
+        
+        for (int i = 0; i < vElementArray.length; i++) {
+                this._elementList.add(vElementArray[i]);
         }
-    } //-- void setElement(org.sourceforge.mbeanmonitoring.report.castor.Element) 
+    }
 
     /**
      * Sets the value of field 'name'.
      * 
      * @param name the value of field 'name'.
      */
-    public void setName(java.lang.String name)
-    {
+    public void setName(
+            final java.lang.String name) {
         this._name = name;
-    } //-- void setName(java.lang.String) 
+    }
 
     /**
-     * Method unmarshal
+     * Method unmarshal.
      * 
      * @param reader
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
+     * @return the unmarshaled
+     * org.sourceforge.mbeanmonitoring.report.castor.List
      */
-    public static org.sourceforge.mbeanmonitoring.report.castor.List unmarshal(java.io.Reader reader)
-        throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
+    public static org.sourceforge.mbeanmonitoring.report.castor.List unmarshal(
+            final java.io.Reader reader)
+    throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         return (org.sourceforge.mbeanmonitoring.report.castor.List) Unmarshaller.unmarshal(org.sourceforge.mbeanmonitoring.report.castor.List.class, reader);
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.List unmarshal(java.io.Reader) 
+    }
 
     /**
-     * Method validate
+     * 
+     * 
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
      */
-    public void validate()
-        throws org.exolab.castor.xml.ValidationException
-    {
+    public void validate(
+    )
+    throws org.exolab.castor.xml.ValidationException {
         org.exolab.castor.xml.Validator validator = new org.exolab.castor.xml.Validator();
         validator.validate(this);
-    } //-- void validate() 
+    }
 
 }
