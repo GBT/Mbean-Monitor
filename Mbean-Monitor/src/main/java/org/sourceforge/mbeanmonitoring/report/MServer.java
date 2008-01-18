@@ -105,15 +105,15 @@ public class MServer implements Runnable {
 										value = new Long(((CountStatistic) stat).getCount()).toString();
 									} else if (stat instanceof TimeStatistic) {
 										TimeStatistic time = (TimeStatistic) stat;
-										if (wantedStatsNames[k].endsWith(MethodStatNameType.VALUE_0.toString()))
+										if (wantedStatsNames[k].endsWith(MethodStatNameType.COUNT.toString()))
 											value = new Long(time.getCount()).toString();
-										else if (wantedStatsNames[k].endsWith(MethodStatNameType.VALUE_3.toString()))
+										else if (wantedStatsNames[k].endsWith(MethodStatNameType.MAX_TIME.toString()))
 											value = new Long(time.getMaxTime()).toString();
-										else if (wantedStatsNames[k].endsWith(MethodStatNameType.VALUE_1.toString()))
+										else if (wantedStatsNames[k].endsWith(MethodStatNameType.MIN_TIME.toString()))
 											value = new Long(time.getMinTime()).toString();
-										else if (wantedStatsNames[k].endsWith(MethodStatNameType.VALUE_4.toString()))
+										else if (wantedStatsNames[k].endsWith(MethodStatNameType.TOTAL_TIME.toString()))
 											value = new Long(time.getTotalTime()).toString();
-										else if (wantedStatsNames[k].endsWith(MethodStatNameType.VALUE_2.toString())) {
+										else if (wantedStatsNames[k].endsWith(MethodStatNameType.MOY_TIME.toString())) {
 											long totalTime = time.getTotalTime();
 											long count = time.getCount();
 											if (count != 0) {

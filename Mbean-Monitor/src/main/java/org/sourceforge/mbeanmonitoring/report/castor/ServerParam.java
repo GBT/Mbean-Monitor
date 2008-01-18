@@ -1,6 +1,6 @@
 /*
  * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.4.3</a>, using an XML
+ * <a href="http://www.castor.org">Castor 1.1.2.1</a>, using an XML
  * Schema.
  * $Id$
  */
@@ -11,17 +11,8 @@ package org.sourceforge.mbeanmonitoring.report.castor;
  //- Imported classes and packages -/
 //---------------------------------/
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Serializable;
-import java.io.Writer;
-import java.util.Enumeration;
-import java.util.Vector;
-import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
-import org.exolab.castor.xml.ValidationException;
-import org.xml.sax.ContentHandler;
 
 /**
  * Class ServerParam.
@@ -36,12 +27,12 @@ public class ServerParam implements java.io.Serializable {
     //--------------------------/
 
     /**
-     * Field _host
+     * Field _host.
      */
     private java.lang.String _host = "localhost";
 
     /**
-     * Field _port
+     * Field _port.
      */
     private short _port = 1099;
 
@@ -51,22 +42,22 @@ public class ServerParam implements java.io.Serializable {
     private boolean _has_port;
 
     /**
-     * Field _genereTo
+     * Field _genereTo.
      */
     private java.lang.String _genereTo;
 
     /**
-     * Field _extension
+     * Field _extension.
      */
     private java.lang.String _extension = "csv";
 
     /**
-     * Field _maxFileSize
+     * Field _maxFileSize.
      */
     private java.lang.String _maxFileSize = "1024KB";
 
     /**
-     * Field _maxBackupIndex
+     * Field _maxBackupIndex.
      */
     private int _maxBackupIndex = 10;
 
@@ -76,7 +67,7 @@ public class ServerParam implements java.io.Serializable {
     private boolean _has_maxBackupIndex;
 
     /**
-     * Field _delay
+     * Field _delay.
      */
     private int _delay = 30;
 
@@ -86,7 +77,7 @@ public class ServerParam implements java.io.Serializable {
     private boolean _has_delay;
 
     /**
-     * Field _nbThreads
+     * Field _nbThreads.
      */
     private int _nbThreads = 10;
 
@@ -96,12 +87,12 @@ public class ServerParam implements java.io.Serializable {
     private boolean _has_nbThreads;
 
     /**
-     * Field _separateur
+     * Field _separateur.
      */
     private java.lang.String _separateur = ";";
 
     /**
-     * Field _mbeanList
+     * Field _mbeanList.
      */
     private java.util.Vector _mbeanList;
 
@@ -116,8 +107,8 @@ public class ServerParam implements java.io.Serializable {
         setExtension("csv");
         setMaxFileSize("1024KB");
         setSeparateur(";");
-        _mbeanList = new Vector();
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.ServerParam()
+        this._mbeanList = new java.util.Vector();
+    }
 
 
       //-----------/
@@ -125,428 +116,483 @@ public class ServerParam implements java.io.Serializable {
     //-----------/
 
     /**
-     * Method addMbean
+     * 
      * 
      * @param vMbean
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void addMbean(org.sourceforge.mbeanmonitoring.report.castor.Mbean vMbean)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        _mbeanList.addElement(vMbean);
-    } //-- void addMbean(org.sourceforge.mbeanmonitoring.report.castor.Mbean) 
+    public void addMbean(
+            final org.sourceforge.mbeanmonitoring.report.castor.Mbean vMbean)
+    throws java.lang.IndexOutOfBoundsException {
+        this._mbeanList.addElement(vMbean);
+    }
 
     /**
-     * Method addMbean
+     * 
      * 
      * @param index
      * @param vMbean
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void addMbean(int index, org.sourceforge.mbeanmonitoring.report.castor.Mbean vMbean)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        _mbeanList.insertElementAt(vMbean, index);
-    } //-- void addMbean(int, org.sourceforge.mbeanmonitoring.report.castor.Mbean) 
+    public void addMbean(
+            final int index,
+            final org.sourceforge.mbeanmonitoring.report.castor.Mbean vMbean)
+    throws java.lang.IndexOutOfBoundsException {
+        this._mbeanList.add(index, vMbean);
+    }
 
     /**
-     * Method deleteDelay
      */
-    public void deleteDelay()
-    {
+    public void deleteDelay(
+    ) {
         this._has_delay= false;
-    } //-- void deleteDelay() 
+    }
 
     /**
-     * Method deleteMaxBackupIndex
      */
-    public void deleteMaxBackupIndex()
-    {
+    public void deleteMaxBackupIndex(
+    ) {
         this._has_maxBackupIndex= false;
-    } //-- void deleteMaxBackupIndex() 
+    }
 
     /**
-     * Method deleteNbThreads
      */
-    public void deleteNbThreads()
-    {
+    public void deleteNbThreads(
+    ) {
         this._has_nbThreads= false;
-    } //-- void deleteNbThreads() 
+    }
 
     /**
-     * Method deletePort
      */
-    public void deletePort()
-    {
+    public void deletePort(
+    ) {
         this._has_port= false;
-    } //-- void deletePort() 
+    }
 
     /**
-     * Method enumerateMbean
+     * Method enumerateMbean.
+     * 
+     * @return an Enumeration over all
+     * org.sourceforge.mbeanmonitoring.report.castor.Mbean elements
      */
-    public java.util.Enumeration enumerateMbean()
-    {
-        return _mbeanList.elements();
-    } //-- java.util.Enumeration enumerateMbean() 
+    public java.util.Enumeration enumerateMbean(
+    ) {
+        return this._mbeanList.elements();
+    }
 
     /**
      * Returns the value of field 'delay'.
      * 
-     * @return the value of field 'delay'.
+     * @return the value of field 'Delay'.
      */
-    public int getDelay()
-    {
+    public int getDelay(
+    ) {
         return this._delay;
-    } //-- int getDelay() 
+    }
 
     /**
      * Returns the value of field 'extension'.
      * 
-     * @return the value of field 'extension'.
+     * @return the value of field 'Extension'.
      */
-    public java.lang.String getExtension()
-    {
+    public java.lang.String getExtension(
+    ) {
         return this._extension;
-    } //-- java.lang.String getExtension() 
+    }
 
     /**
      * Returns the value of field 'genereTo'.
      * 
-     * @return the value of field 'genereTo'.
+     * @return the value of field 'GenereTo'.
      */
-    public java.lang.String getGenereTo()
-    {
+    public java.lang.String getGenereTo(
+    ) {
         return this._genereTo;
-    } //-- java.lang.String getGenereTo() 
+    }
 
     /**
      * Returns the value of field 'host'.
      * 
-     * @return the value of field 'host'.
+     * @return the value of field 'Host'.
      */
-    public java.lang.String getHost()
-    {
+    public java.lang.String getHost(
+    ) {
         return this._host;
-    } //-- java.lang.String getHost() 
+    }
 
     /**
      * Returns the value of field 'maxBackupIndex'.
      * 
-     * @return the value of field 'maxBackupIndex'.
+     * @return the value of field 'MaxBackupIndex'.
      */
-    public int getMaxBackupIndex()
-    {
+    public int getMaxBackupIndex(
+    ) {
         return this._maxBackupIndex;
-    } //-- int getMaxBackupIndex() 
+    }
 
     /**
      * Returns the value of field 'maxFileSize'.
      * 
-     * @return the value of field 'maxFileSize'.
+     * @return the value of field 'MaxFileSize'.
      */
-    public java.lang.String getMaxFileSize()
-    {
+    public java.lang.String getMaxFileSize(
+    ) {
         return this._maxFileSize;
-    } //-- java.lang.String getMaxFileSize() 
+    }
 
     /**
-     * Method getMbean
+     * Method getMbean.
      * 
      * @param index
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     * @return the value of the
+     * org.sourceforge.mbeanmonitoring.report.castor.Mbean at the
+     * given index
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Mbean getMbean(int index)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        //-- check bounds for index
-        if ((index < 0) || (index > _mbeanList.size())) {
-            throw new IndexOutOfBoundsException();
+    public org.sourceforge.mbeanmonitoring.report.castor.Mbean getMbean(
+            final int index)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._mbeanList.size()) {
+            throw new IndexOutOfBoundsException("getMbean: Index value '" + index + "' not in range [0.." + (this._mbeanList.size() - 1) + "]");
         }
         
-        return (org.sourceforge.mbeanmonitoring.report.castor.Mbean) _mbeanList.elementAt(index);
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Mbean getMbean(int) 
+        return (org.sourceforge.mbeanmonitoring.report.castor.Mbean) _mbeanList.get(index);
+    }
 
     /**
-     * Method getMbean
+     * Method getMbean.Returns the contents of the collection in an
+     * Array.  <p>Note:  Just in case the collection contents are
+     * changing in another thread, we pass a 0-length Array of the
+     * correct type into the API call.  This way we <i>know</i>
+     * that the Array returned is of exactly the correct length.
+     * 
+     * @return this collection as an Array
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Mbean[] getMbean()
-    {
-        int size = _mbeanList.size();
-        org.sourceforge.mbeanmonitoring.report.castor.Mbean[] mArray = new org.sourceforge.mbeanmonitoring.report.castor.Mbean[size];
-        for (int index = 0; index < size; index++) {
-            mArray[index] = (org.sourceforge.mbeanmonitoring.report.castor.Mbean) _mbeanList.elementAt(index);
-        }
-        return mArray;
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Mbean[] getMbean() 
+    public org.sourceforge.mbeanmonitoring.report.castor.Mbean[] getMbean(
+    ) {
+        org.sourceforge.mbeanmonitoring.report.castor.Mbean[] array = new org.sourceforge.mbeanmonitoring.report.castor.Mbean[0];
+        return (org.sourceforge.mbeanmonitoring.report.castor.Mbean[]) this._mbeanList.toArray(array);
+    }
 
     /**
-     * Method getMbeanCount
+     * Method getMbeanCount.
+     * 
+     * @return the size of this collection
      */
-    public int getMbeanCount()
-    {
-        return _mbeanList.size();
-    } //-- int getMbeanCount() 
+    public int getMbeanCount(
+    ) {
+        return this._mbeanList.size();
+    }
 
     /**
      * Returns the value of field 'nbThreads'.
      * 
-     * @return the value of field 'nbThreads'.
+     * @return the value of field 'NbThreads'.
      */
-    public int getNbThreads()
-    {
+    public int getNbThreads(
+    ) {
         return this._nbThreads;
-    } //-- int getNbThreads() 
+    }
 
     /**
      * Returns the value of field 'port'.
      * 
-     * @return the value of field 'port'.
+     * @return the value of field 'Port'.
      */
-    public short getPort()
-    {
+    public short getPort(
+    ) {
         return this._port;
-    } //-- short getPort() 
+    }
 
     /**
      * Returns the value of field 'separateur'.
      * 
-     * @return the value of field 'separateur'.
+     * @return the value of field 'Separateur'.
      */
-    public java.lang.String getSeparateur()
-    {
+    public java.lang.String getSeparateur(
+    ) {
         return this._separateur;
-    } //-- java.lang.String getSeparateur() 
+    }
 
     /**
-     * Method hasDelay
+     * Method hasDelay.
+     * 
+     * @return true if at least one Delay has been added
      */
-    public boolean hasDelay()
-    {
+    public boolean hasDelay(
+    ) {
         return this._has_delay;
-    } //-- boolean hasDelay() 
+    }
 
     /**
-     * Method hasMaxBackupIndex
+     * Method hasMaxBackupIndex.
+     * 
+     * @return true if at least one MaxBackupIndex has been added
      */
-    public boolean hasMaxBackupIndex()
-    {
+    public boolean hasMaxBackupIndex(
+    ) {
         return this._has_maxBackupIndex;
-    } //-- boolean hasMaxBackupIndex() 
+    }
 
     /**
-     * Method hasNbThreads
+     * Method hasNbThreads.
+     * 
+     * @return true if at least one NbThreads has been added
      */
-    public boolean hasNbThreads()
-    {
+    public boolean hasNbThreads(
+    ) {
         return this._has_nbThreads;
-    } //-- boolean hasNbThreads() 
+    }
 
     /**
-     * Method hasPort
+     * Method hasPort.
+     * 
+     * @return true if at least one Port has been added
      */
-    public boolean hasPort()
-    {
+    public boolean hasPort(
+    ) {
         return this._has_port;
-    } //-- boolean hasPort() 
+    }
 
     /**
-     * Method isValid
+     * Method isValid.
+     * 
+     * @return true if this object is valid according to the schema
      */
-    public boolean isValid()
-    {
+    public boolean isValid(
+    ) {
         try {
             validate();
-        }
-        catch (org.exolab.castor.xml.ValidationException vex) {
+        } catch (org.exolab.castor.xml.ValidationException vex) {
             return false;
         }
         return true;
-    } //-- boolean isValid() 
+    }
 
     /**
-     * Method marshal
+     * 
      * 
      * @param out
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
      */
-    public void marshal(java.io.Writer out)
-        throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
-        
+    public void marshal(
+            final java.io.Writer out)
+    throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, out);
-    } //-- void marshal(java.io.Writer) 
+    }
 
     /**
-     * Method marshal
+     * 
      * 
      * @param handler
+     * @throws java.io.IOException if an IOException occurs during
+     * marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
      */
-    public void marshal(org.xml.sax.ContentHandler handler)
-        throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
-        
+    public void marshal(
+            final org.xml.sax.ContentHandler handler)
+    throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, handler);
-    } //-- void marshal(org.xml.sax.ContentHandler) 
+    }
 
     /**
-     * Method removeAllMbean
      */
-    public void removeAllMbean()
-    {
-        _mbeanList.removeAllElements();
-    } //-- void removeAllMbean() 
+    public void removeAllMbean(
+    ) {
+        this._mbeanList.clear();
+    }
 
     /**
-     * Method removeMbean
+     * Method removeMbean.
+     * 
+     * @param vMbean
+     * @return true if the object was removed from the collection.
+     */
+    public boolean removeMbean(
+            final org.sourceforge.mbeanmonitoring.report.castor.Mbean vMbean) {
+        boolean removed = _mbeanList.remove(vMbean);
+        return removed;
+    }
+
+    /**
+     * Method removeMbeanAt.
      * 
      * @param index
+     * @return the element removed from the collection
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Mbean removeMbean(int index)
-    {
-        java.lang.Object obj = _mbeanList.elementAt(index);
-        _mbeanList.removeElementAt(index);
+    public org.sourceforge.mbeanmonitoring.report.castor.Mbean removeMbeanAt(
+            final int index) {
+        java.lang.Object obj = this._mbeanList.remove(index);
         return (org.sourceforge.mbeanmonitoring.report.castor.Mbean) obj;
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Mbean removeMbean(int) 
+    }
 
     /**
      * Sets the value of field 'delay'.
      * 
      * @param delay the value of field 'delay'.
      */
-    public void setDelay(int delay)
-    {
+    public void setDelay(
+            final int delay) {
         this._delay = delay;
         this._has_delay = true;
-    } //-- void setDelay(int) 
+    }
 
     /**
      * Sets the value of field 'extension'.
      * 
      * @param extension the value of field 'extension'.
      */
-    public void setExtension(java.lang.String extension)
-    {
+    public void setExtension(
+            final java.lang.String extension) {
         this._extension = extension;
-    } //-- void setExtension(java.lang.String) 
+    }
 
     /**
      * Sets the value of field 'genereTo'.
      * 
      * @param genereTo the value of field 'genereTo'.
      */
-    public void setGenereTo(java.lang.String genereTo)
-    {
+    public void setGenereTo(
+            final java.lang.String genereTo) {
         this._genereTo = genereTo;
-    } //-- void setGenereTo(java.lang.String) 
+    }
 
     /**
      * Sets the value of field 'host'.
      * 
      * @param host the value of field 'host'.
      */
-    public void setHost(java.lang.String host)
-    {
+    public void setHost(
+            final java.lang.String host) {
         this._host = host;
-    } //-- void setHost(java.lang.String) 
+    }
 
     /**
      * Sets the value of field 'maxBackupIndex'.
      * 
      * @param maxBackupIndex the value of field 'maxBackupIndex'.
      */
-    public void setMaxBackupIndex(int maxBackupIndex)
-    {
+    public void setMaxBackupIndex(
+            final int maxBackupIndex) {
         this._maxBackupIndex = maxBackupIndex;
         this._has_maxBackupIndex = true;
-    } //-- void setMaxBackupIndex(int) 
+    }
 
     /**
      * Sets the value of field 'maxFileSize'.
      * 
      * @param maxFileSize the value of field 'maxFileSize'.
      */
-    public void setMaxFileSize(java.lang.String maxFileSize)
-    {
+    public void setMaxFileSize(
+            final java.lang.String maxFileSize) {
         this._maxFileSize = maxFileSize;
-    } //-- void setMaxFileSize(java.lang.String) 
+    }
 
     /**
-     * Method setMbean
+     * 
      * 
      * @param index
      * @param vMbean
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void setMbean(int index, org.sourceforge.mbeanmonitoring.report.castor.Mbean vMbean)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        //-- check bounds for index
-        if ((index < 0) || (index > _mbeanList.size())) {
-            throw new IndexOutOfBoundsException();
+    public void setMbean(
+            final int index,
+            final org.sourceforge.mbeanmonitoring.report.castor.Mbean vMbean)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._mbeanList.size()) {
+            throw new IndexOutOfBoundsException("setMbean: Index value '" + index + "' not in range [0.." + (this._mbeanList.size() - 1) + "]");
         }
-        _mbeanList.setElementAt(vMbean, index);
-    } //-- void setMbean(int, org.sourceforge.mbeanmonitoring.report.castor.Mbean) 
+        
+        this._mbeanList.set(index, vMbean);
+    }
 
     /**
-     * Method setMbean
      * 
-     * @param mbeanArray
+     * 
+     * @param vMbeanArray
      */
-    public void setMbean(org.sourceforge.mbeanmonitoring.report.castor.Mbean[] mbeanArray)
-    {
+    public void setMbean(
+            final org.sourceforge.mbeanmonitoring.report.castor.Mbean[] vMbeanArray) {
         //-- copy array
-        _mbeanList.removeAllElements();
-        for (int i = 0; i < mbeanArray.length; i++) {
-            _mbeanList.addElement(mbeanArray[i]);
+        _mbeanList.clear();
+        
+        for (int i = 0; i < vMbeanArray.length; i++) {
+                this._mbeanList.add(vMbeanArray[i]);
         }
-    } //-- void setMbean(org.sourceforge.mbeanmonitoring.report.castor.Mbean) 
+    }
 
     /**
      * Sets the value of field 'nbThreads'.
      * 
      * @param nbThreads the value of field 'nbThreads'.
      */
-    public void setNbThreads(int nbThreads)
-    {
+    public void setNbThreads(
+            final int nbThreads) {
         this._nbThreads = nbThreads;
         this._has_nbThreads = true;
-    } //-- void setNbThreads(int) 
+    }
 
     /**
      * Sets the value of field 'port'.
      * 
      * @param port the value of field 'port'.
      */
-    public void setPort(short port)
-    {
+    public void setPort(
+            final short port) {
         this._port = port;
         this._has_port = true;
-    } //-- void setPort(short) 
+    }
 
     /**
      * Sets the value of field 'separateur'.
      * 
      * @param separateur the value of field 'separateur'.
      */
-    public void setSeparateur(java.lang.String separateur)
-    {
+    public void setSeparateur(
+            final java.lang.String separateur) {
         this._separateur = separateur;
-    } //-- void setSeparateur(java.lang.String) 
+    }
 
     /**
-     * Method unmarshal
+     * Method unmarshal.
      * 
      * @param reader
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
+     * @return the unmarshaled
+     * org.sourceforge.mbeanmonitoring.report.castor.ServerParam
      */
-    public static org.sourceforge.mbeanmonitoring.report.castor.ServerParam unmarshal(java.io.Reader reader)
-        throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
+    public static org.sourceforge.mbeanmonitoring.report.castor.ServerParam unmarshal(
+            final java.io.Reader reader)
+    throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         return (org.sourceforge.mbeanmonitoring.report.castor.ServerParam) Unmarshaller.unmarshal(org.sourceforge.mbeanmonitoring.report.castor.ServerParam.class, reader);
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.ServerParam unmarshal(java.io.Reader) 
+    }
 
     /**
-     * Method validate
+     * 
+     * 
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
      */
-    public void validate()
-        throws org.exolab.castor.xml.ValidationException
-    {
+    public void validate(
+    )
+    throws org.exolab.castor.xml.ValidationException {
         org.exolab.castor.xml.Validator validator = new org.exolab.castor.xml.Validator();
         validator.validate(this);
-    } //-- void validate() 
+    }
 
 }

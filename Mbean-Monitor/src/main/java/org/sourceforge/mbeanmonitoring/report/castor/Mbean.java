@@ -1,6 +1,6 @@
 /*
  * This class was automatically generated with 
- * <a href="http://www.castor.org">Castor 0.9.4.3</a>, using an XML
+ * <a href="http://www.castor.org">Castor 1.1.2.1</a>, using an XML
  * Schema.
  * $Id$
  */
@@ -11,18 +11,8 @@ package org.sourceforge.mbeanmonitoring.report.castor;
  //- Imported classes and packages -/
 //---------------------------------/
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Serializable;
-import java.io.Writer;
-import java.util.Enumeration;
-import java.util.Vector;
-import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
-import org.exolab.castor.xml.ValidationException;
-import org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType;
-import org.xml.sax.ContentHandler;
 
 /**
  * Class Mbean.
@@ -37,22 +27,22 @@ public class Mbean implements java.io.Serializable {
     //--------------------------/
 
     /**
-     * Field _name
+     * Field _name.
      */
     private java.lang.String _name;
 
     /**
-     * Field _domain
+     * Field _domain.
      */
     private org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType _domain;
 
     /**
-     * Field _filename
+     * Field _filename.
      */
     private java.lang.String _filename;
 
     /**
-     * Field _attributeList
+     * Field _attributeList.
      */
     private java.util.Vector _attributeList;
 
@@ -63,8 +53,8 @@ public class Mbean implements java.io.Serializable {
 
     public Mbean() {
         super();
-        _attributeList = new Vector();
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Mbean()
+        this._attributeList = new java.util.Vector();
+    }
 
 
       //-----------/
@@ -72,240 +62,292 @@ public class Mbean implements java.io.Serializable {
     //-----------/
 
     /**
-     * Method addAttribute
+     * 
      * 
      * @param vAttribute
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void addAttribute(org.sourceforge.mbeanmonitoring.report.castor.Attribute vAttribute)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        _attributeList.addElement(vAttribute);
-    } //-- void addAttribute(org.sourceforge.mbeanmonitoring.report.castor.Attribute) 
+    public void addAttribute(
+            final org.sourceforge.mbeanmonitoring.report.castor.Attribute vAttribute)
+    throws java.lang.IndexOutOfBoundsException {
+        this._attributeList.addElement(vAttribute);
+    }
 
     /**
-     * Method addAttribute
+     * 
      * 
      * @param index
      * @param vAttribute
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void addAttribute(int index, org.sourceforge.mbeanmonitoring.report.castor.Attribute vAttribute)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        _attributeList.insertElementAt(vAttribute, index);
-    } //-- void addAttribute(int, org.sourceforge.mbeanmonitoring.report.castor.Attribute) 
+    public void addAttribute(
+            final int index,
+            final org.sourceforge.mbeanmonitoring.report.castor.Attribute vAttribute)
+    throws java.lang.IndexOutOfBoundsException {
+        this._attributeList.add(index, vAttribute);
+    }
 
     /**
-     * Method enumerateAttribute
+     * Method enumerateAttribute.
+     * 
+     * @return an Enumeration over all
+     * org.sourceforge.mbeanmonitoring.report.castor.Attribute
+     * elements
      */
-    public java.util.Enumeration enumerateAttribute()
-    {
-        return _attributeList.elements();
-    } //-- java.util.Enumeration enumerateAttribute() 
+    public java.util.Enumeration enumerateAttribute(
+    ) {
+        return this._attributeList.elements();
+    }
 
     /**
-     * Method getAttribute
+     * Method getAttribute.
      * 
      * @param index
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
+     * @return the value of the
+     * org.sourceforge.mbeanmonitoring.report.castor.Attribute at
+     * the given index
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Attribute getAttribute(int index)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        //-- check bounds for index
-        if ((index < 0) || (index > _attributeList.size())) {
-            throw new IndexOutOfBoundsException();
+    public org.sourceforge.mbeanmonitoring.report.castor.Attribute getAttribute(
+            final int index)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._attributeList.size()) {
+            throw new IndexOutOfBoundsException("getAttribute: Index value '" + index + "' not in range [0.." + (this._attributeList.size() - 1) + "]");
         }
         
-        return (org.sourceforge.mbeanmonitoring.report.castor.Attribute) _attributeList.elementAt(index);
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Attribute getAttribute(int) 
+        return (org.sourceforge.mbeanmonitoring.report.castor.Attribute) _attributeList.get(index);
+    }
 
     /**
-     * Method getAttribute
+     * Method getAttribute.Returns the contents of the collection
+     * in an Array.  <p>Note:  Just in case the collection contents
+     * are changing in another thread, we pass a 0-length Array of
+     * the correct type into the API call.  This way we <i>know</i>
+     * that the Array returned is of exactly the correct length.
+     * 
+     * @return this collection as an Array
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Attribute[] getAttribute()
-    {
-        int size = _attributeList.size();
-        org.sourceforge.mbeanmonitoring.report.castor.Attribute[] mArray = new org.sourceforge.mbeanmonitoring.report.castor.Attribute[size];
-        for (int index = 0; index < size; index++) {
-            mArray[index] = (org.sourceforge.mbeanmonitoring.report.castor.Attribute) _attributeList.elementAt(index);
-        }
-        return mArray;
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Attribute[] getAttribute() 
+    public org.sourceforge.mbeanmonitoring.report.castor.Attribute[] getAttribute(
+    ) {
+        org.sourceforge.mbeanmonitoring.report.castor.Attribute[] array = new org.sourceforge.mbeanmonitoring.report.castor.Attribute[0];
+        return (org.sourceforge.mbeanmonitoring.report.castor.Attribute[]) this._attributeList.toArray(array);
+    }
 
     /**
-     * Method getAttributeCount
+     * Method getAttributeCount.
+     * 
+     * @return the size of this collection
      */
-    public int getAttributeCount()
-    {
-        return _attributeList.size();
-    } //-- int getAttributeCount() 
+    public int getAttributeCount(
+    ) {
+        return this._attributeList.size();
+    }
 
     /**
      * Returns the value of field 'domain'.
      * 
-     * @return the value of field 'domain'.
+     * @return the value of field 'Domain'.
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType getDomain()
-    {
+    public org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType getDomain(
+    ) {
         return this._domain;
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType getDomain() 
+    }
 
     /**
      * Returns the value of field 'filename'.
      * 
-     * @return the value of field 'filename'.
+     * @return the value of field 'Filename'.
      */
-    public java.lang.String getFilename()
-    {
+    public java.lang.String getFilename(
+    ) {
         return this._filename;
-    } //-- java.lang.String getFilename() 
+    }
 
     /**
      * Returns the value of field 'name'.
      * 
-     * @return the value of field 'name'.
+     * @return the value of field 'Name'.
      */
-    public java.lang.String getName()
-    {
+    public java.lang.String getName(
+    ) {
         return this._name;
-    } //-- java.lang.String getName() 
+    }
 
     /**
-     * Method isValid
+     * Method isValid.
+     * 
+     * @return true if this object is valid according to the schema
      */
-    public boolean isValid()
-    {
+    public boolean isValid(
+    ) {
         try {
             validate();
-        }
-        catch (org.exolab.castor.xml.ValidationException vex) {
+        } catch (org.exolab.castor.xml.ValidationException vex) {
             return false;
         }
         return true;
-    } //-- boolean isValid() 
+    }
 
     /**
-     * Method marshal
+     * 
      * 
      * @param out
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
      */
-    public void marshal(java.io.Writer out)
-        throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
-        
+    public void marshal(
+            final java.io.Writer out)
+    throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, out);
-    } //-- void marshal(java.io.Writer) 
+    }
 
     /**
-     * Method marshal
+     * 
      * 
      * @param handler
+     * @throws java.io.IOException if an IOException occurs during
+     * marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
      */
-    public void marshal(org.xml.sax.ContentHandler handler)
-        throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
-        
+    public void marshal(
+            final org.xml.sax.ContentHandler handler)
+    throws java.io.IOException, org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         Marshaller.marshal(this, handler);
-    } //-- void marshal(org.xml.sax.ContentHandler) 
+    }
 
     /**
-     * Method removeAllAttribute
      */
-    public void removeAllAttribute()
-    {
-        _attributeList.removeAllElements();
-    } //-- void removeAllAttribute() 
+    public void removeAllAttribute(
+    ) {
+        this._attributeList.clear();
+    }
 
     /**
-     * Method removeAttribute
+     * Method removeAttribute.
+     * 
+     * @param vAttribute
+     * @return true if the object was removed from the collection.
+     */
+    public boolean removeAttribute(
+            final org.sourceforge.mbeanmonitoring.report.castor.Attribute vAttribute) {
+        boolean removed = _attributeList.remove(vAttribute);
+        return removed;
+    }
+
+    /**
+     * Method removeAttributeAt.
      * 
      * @param index
+     * @return the element removed from the collection
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.Attribute removeAttribute(int index)
-    {
-        java.lang.Object obj = _attributeList.elementAt(index);
-        _attributeList.removeElementAt(index);
+    public org.sourceforge.mbeanmonitoring.report.castor.Attribute removeAttributeAt(
+            final int index) {
+        java.lang.Object obj = this._attributeList.remove(index);
         return (org.sourceforge.mbeanmonitoring.report.castor.Attribute) obj;
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Attribute removeAttribute(int) 
+    }
 
     /**
-     * Method setAttribute
+     * 
      * 
      * @param index
      * @param vAttribute
+     * @throws java.lang.IndexOutOfBoundsException if the index
+     * given is outside the bounds of the collection
      */
-    public void setAttribute(int index, org.sourceforge.mbeanmonitoring.report.castor.Attribute vAttribute)
-        throws java.lang.IndexOutOfBoundsException
-    {
-        //-- check bounds for index
-        if ((index < 0) || (index > _attributeList.size())) {
-            throw new IndexOutOfBoundsException();
+    public void setAttribute(
+            final int index,
+            final org.sourceforge.mbeanmonitoring.report.castor.Attribute vAttribute)
+    throws java.lang.IndexOutOfBoundsException {
+        // check bounds for index
+        if (index < 0 || index >= this._attributeList.size()) {
+            throw new IndexOutOfBoundsException("setAttribute: Index value '" + index + "' not in range [0.." + (this._attributeList.size() - 1) + "]");
         }
-        _attributeList.setElementAt(vAttribute, index);
-    } //-- void setAttribute(int, org.sourceforge.mbeanmonitoring.report.castor.Attribute) 
+        
+        this._attributeList.set(index, vAttribute);
+    }
 
     /**
-     * Method setAttribute
      * 
-     * @param attributeArray
+     * 
+     * @param vAttributeArray
      */
-    public void setAttribute(org.sourceforge.mbeanmonitoring.report.castor.Attribute[] attributeArray)
-    {
+    public void setAttribute(
+            final org.sourceforge.mbeanmonitoring.report.castor.Attribute[] vAttributeArray) {
         //-- copy array
-        _attributeList.removeAllElements();
-        for (int i = 0; i < attributeArray.length; i++) {
-            _attributeList.addElement(attributeArray[i]);
+        _attributeList.clear();
+        
+        for (int i = 0; i < vAttributeArray.length; i++) {
+                this._attributeList.add(vAttributeArray[i]);
         }
-    } //-- void setAttribute(org.sourceforge.mbeanmonitoring.report.castor.Attribute) 
+    }
 
     /**
      * Sets the value of field 'domain'.
      * 
      * @param domain the value of field 'domain'.
      */
-    public void setDomain(org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType domain)
-    {
+    public void setDomain(
+            final org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType domain) {
         this._domain = domain;
-    } //-- void setDomain(org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType) 
+    }
 
     /**
      * Sets the value of field 'filename'.
      * 
      * @param filename the value of field 'filename'.
      */
-    public void setFilename(java.lang.String filename)
-    {
+    public void setFilename(
+            final java.lang.String filename) {
         this._filename = filename;
-    } //-- void setFilename(java.lang.String) 
+    }
 
     /**
      * Sets the value of field 'name'.
      * 
      * @param name the value of field 'name'.
      */
-    public void setName(java.lang.String name)
-    {
+    public void setName(
+            final java.lang.String name) {
         this._name = name;
-    } //-- void setName(java.lang.String) 
+    }
 
     /**
-     * Method unmarshal
+     * Method unmarshal.
      * 
      * @param reader
+     * @throws org.exolab.castor.xml.MarshalException if object is
+     * null or if any SAXException is thrown during marshaling
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
+     * @return the unmarshaled
+     * org.sourceforge.mbeanmonitoring.report.castor.Mbean
      */
-    public static org.sourceforge.mbeanmonitoring.report.castor.Mbean unmarshal(java.io.Reader reader)
-        throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
-    {
+    public static org.sourceforge.mbeanmonitoring.report.castor.Mbean unmarshal(
+            final java.io.Reader reader)
+    throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
         return (org.sourceforge.mbeanmonitoring.report.castor.Mbean) Unmarshaller.unmarshal(org.sourceforge.mbeanmonitoring.report.castor.Mbean.class, reader);
-    } //-- org.sourceforge.mbeanmonitoring.report.castor.Mbean unmarshal(java.io.Reader) 
+    }
 
     /**
-     * Method validate
+     * 
+     * 
+     * @throws org.exolab.castor.xml.ValidationException if this
+     * object is an invalid instance according to the schema
      */
-    public void validate()
-        throws org.exolab.castor.xml.ValidationException
-    {
+    public void validate(
+    )
+    throws org.exolab.castor.xml.ValidationException {
         org.exolab.castor.xml.Validator validator = new org.exolab.castor.xml.Validator();
         validator.validate(this);
-    } //-- void validate() 
+    }
 
 }
