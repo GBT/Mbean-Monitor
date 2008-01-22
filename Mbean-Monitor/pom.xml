@@ -114,10 +114,14 @@ along with this program; if not, write to the Free Software
   </build>
 
 	<dependencies>
+                <!-- TODO This dependancy is NOT on the maven repo, you have to install it manually: 
+	        mvn install:install-file -DgroupId=castor -DartifactId=castor -Dversion=1.1.2.1 -Dpackaging=jar -Dfile=castor-1.1.2.1.jar
+                 -->
+
 		<dependency>
 		    <groupId>castor</groupId>
 		    <artifactId>castor</artifactId>
-		    <version>0.9.5</version>
+		    <version>1.1.2.1</version>
 		</dependency>
 
 		<dependency>
