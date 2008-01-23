@@ -57,7 +57,7 @@
 		</java>
 	</target>
 
-	<target name="graph-batch" depends="compile">
+	<target name="graph-batch">
 		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.BatchGraph">
 			<classpath refid="classpath"/>
 			<arg line="${rep}"/>
