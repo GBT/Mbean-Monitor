@@ -23,7 +23,8 @@
 
 	<property environment="env"/>
 	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}"/>
-	<property name="xmlfile" value="src/main/config/jbossreportdefault.xml"/>
+	<!--property name="xmlfile" value="src/main/config/jbossreportdefault.xml"/-->
+	<property name="xmlfile" value="/data/Work/MBean-Monitor/jbossreportdgddi.xml"/>
 	<property name="rep" value="/tmp/JbossReport/current"/>
 
 	<property environment="env"/>
@@ -71,7 +72,7 @@
 				<include name="config/**"/>
 			</fileset>
 		</copy>
-		<jar destfile="target/mbeanmonitoring-${version}.jar" basedir="classes"/>
+		<jar destfile="target/mbeanmonitoring-${version}.jar" basedir="target/classes"/>
 	</target>
 
 	<target name="run">
@@ -119,6 +120,9 @@
 						includes="mbeanmonitoring-${version}.jar"/>
 			<zipfileset dir="src/main/config" 
 						prefix="mbeanmonitoring/config"
+						includes="**.*"/>
+			<zipfileset dir="src/main/tools" 
+						prefix="mbeanmonitoring/tools"
 						includes="**.*"/>
 			
 		</zip>	
