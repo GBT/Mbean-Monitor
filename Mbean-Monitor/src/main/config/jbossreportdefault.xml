@@ -1,8 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Paramétrage par défaut de l'outil de capture des MBeans JBOSS-->
 <ServerParam host="localhost" port="1099" genereTo="/tmp/JbossReport" extension="csv" MaxFileSize="14096KB" MaxBackupIndex="10" delay="30" separateur=";" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="jbossreportserver.xsd">
-	<mbean name="type=ServerInfo" domain="jboss.system" filename="Serveur JBOSS">
-		<attribute name="FreeMemory"/>
-		<attribute name="TotalMemory"/>
-	</mbean>
+
+<!-- Domain Name:jboss.system ServerInfo -->
+        <mbean name="type=ServerInfo" domain="jboss.system" filename="jboss-Memory">
+                <attribute name="FreeMemory"/>
+                <attribute name="MaxMemory"/>
+                <attribute name="TotalMemory"/>
+        </mbean>
+        <mbean name="type=ServerInfo" domain="jboss.system" filename="jboss-Threads">
+                <attribute name="ActiveThreadCount"/>
+        </mbean>
+
+<!-- Domain Name:jboss.jca  JDBC Pools -->
+        <mbean name="name=DefaultDS,service=ManagedConnectionPool" domain="jboss.jca" filename="jdbc-DefaultDS">
+                <attribute name="AvailableConnectionCount"/>
+                <attribute name="MaxConnectionsInUseCount"/>
+                <attribute name="InUseConnectionCount"/>
+                <attribute name="ConnectionCreatedCount"/>
+                <attribute name="ConnectionDestroyedCount"/>
+        </mbean>
+
+<!-- Domain Name:jboss.web  Connectors Pools -->
+        <mbean name="name=http-0.0.0.0-8080,type=ThreadPool" domain="jboss.web" filename="tomcat-Pool">
+                <attribute name="currentThreadsBusy"/>
+                <attribute name="currentThreadCount"/>
+                <attribute name="maxThreads"/>
+        </mbean>
+        <mbean name="name=jk-8009,type=ThreadPool" domain="jboss.web" filename="jk-Pool">
+                <attribute name="currentThreadsBusy"/>
+                <attribute name="currentThreadCount"/>
+                <attribute name="maxThreads"/>
+        </mbean>
+
+<!-- Domain Name:jboss.web  Webapps actives -->
+        <mbean name="host=localhost,path=/web-console,type=Manager" domain="jboss.web" filename="web-Console">
+                <attribute name="activeSessions"/>
+        </mbean>
+
+<!-- Domain Name:jboss.web  Sessions -->
+        <mbean name="J2EEApplication=none,J2EEServer=none,j2eeType=WebModule,name=//localhost/jmx-console" domain="jboss.web" filename="web-jmx-console">
+                <attribute name="state"/>
+        </mbean>
+
+
 </ServerParam>
