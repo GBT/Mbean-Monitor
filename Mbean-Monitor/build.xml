@@ -45,8 +45,6 @@
 
 	<target name="clean">
 		<delete includeEmptyDirs="true" quiet="true">
-			<fileset dir="classes"/>
-			<fileset dir="output"/>
 			<fileset dir="target"/>
 		</delete>
 	</target>
@@ -58,16 +56,17 @@
 	</target>
 
 	<target name="init" >
-		<mkdir dir="classes" />
 		<mkdir dir="target" />
-		<mkdir dir="javadoc" />
+		<mkdir dir="target/classes" />
+		<mkdir dir="target/javadoc" />
 	</target>
 
 	<target name="compile" depends="init">
-		<javac srcdir="src/main/java" destdir="classes" debug="on" deprecation="on" optimize="off">
+		<javac srcdir="src/main/java" 
+				destdir="target/classes" debug="on" deprecation="on" optimize="off">
 			<classpath refid="classpath"/>
 		</javac>
-		<copy todir="classes" >
+		<copy todir="target/classes" >
 			<fileset dir="src/main">
 				<include name="config/**"/>
 			</fileset>
@@ -76,7 +75,8 @@
 	</target>
 
 	<target name="run">
-		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.Capture">
+		<java 	fork="yes" 
+				classname="org.sourceforge.mbeanmonitoring.report.Capture">
 			<classpath refid="classpath"/>
 			<arg line="${xmlfile}"/>
 		</java>
@@ -103,17 +103,24 @@
 		</java>
 	</target>
 	
-	<target name="release">
+	<target name="release" depends="castor,compile">
 		<echo>Run mvn package site (successfully) before this</echo>
-		<zip 	destfile="target/mbeanmonitoring-${version}.zip"
-				prefix="">
+		
+		<zip 	destfile="target/mbeanmonitoring-${version}.zip">
 			<zipfileset dir="target/site/apidocs/" 
-						prefix="docs"/>
+						prefix="mbeanmonitoring/docs"/>
 			<zipfileset dir="lib" 
-						prefix="lib"/>						
-			<fileset 	dir="src/main/ant" 
-						includes="build.xml"/>
-			<fileset dir="target" includes="mbeanmonitoring-${version}.jar"/>
+						prefix="mbeanmonitoring/lib"/>						
+			<zipfileset dir="src/main/ant" 
+						includes="build.xml"
+						prefix="mbeanmonitoring"/>
+			<zipfileset dir="target" 
+						prefix="mbeanmonitoring"
+						includes="mbeanmonitoring-${version}.jar"/>
+			<zipfileset dir="src/main/config" 
+						prefix="mbeanmonitoring/config"
+						includes="**.*"/>
+			
 		</zip>	
 	</target>
 </project>
