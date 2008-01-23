@@ -11,7 +11,9 @@
 	    		activity inside a Java application, such as JBoss, using a valid implementation
 	    		of the JMX specification. 
 	    	</p>
-	    	<p>TODO: Insert snapshot here
+	    	<p>
+	    		<img src="images/screenshot"
+	    			 alt="MBean Monitoring Screenshot"/>
 	    	</p>
     	</section>
     </body>
