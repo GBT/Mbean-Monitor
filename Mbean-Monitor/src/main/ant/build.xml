@@ -23,11 +23,8 @@
 
 	<property environment="env"/>
 	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}"/>
-	<property name="xmlfile" value="src/main/config/jbossreportdefault.xml"/>
+	<property name="xmlfile" value="config/jbossreportdefault.xml"/>
 	<property name="rep" value="/tmp/JbossReport/current"/>
-
-	<property environment="env"/>
-	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}"/>
 	<property name="version" value="1.0-alpha"/>
 
 	<path id="classpath">
