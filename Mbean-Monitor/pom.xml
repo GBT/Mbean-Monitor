@@ -5,7 +5,7 @@
   <artifactId>mbeanmonitoring</artifactId>
   <name>MBean-Monitoring</name>
   <version>1.0-alpha</version>
-  <description>TODO</description>
+  <description>The MBean Monitor tool allow to monitor mbean activity, which include collecting data and displaying graphical representation of the mbean attribute evolution.</description>
   	<url>http://mbean-monitor.sourceforge.net/</url>
   	<distributionManagement>
     	<site>
@@ -107,7 +107,7 @@ along with this program; if not, write to the Free Software
 	                   <packaging>org.sourceforge.mbeanmonitoring.report.castor</packaging>
 	             </configuration>
 	           </execution>
-          </executions>
+          </executions> 
        </plugin>
 
     </plugins>
@@ -121,7 +121,7 @@ along with this program; if not, write to the Free Software
 		<dependency>
 		    <groupId>castor</groupId>
 		    <artifactId>castor</artifactId>
-		    <version>1.1.2.1</version>
+		    <version>1.0</version>
 		</dependency>
 
 		<dependency>

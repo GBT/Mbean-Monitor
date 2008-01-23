@@ -26,8 +26,9 @@
 	    </links>
 
 		<menu name="About">
-	            <item name="Quick history" href="/history.html"/>
-	            <item name="Purpose" href="/purpose.html"/>
+	            <item name="Quick history" 	href="/history.html"/>
+	            <item name="Purpose" 		href="/purpose.html"/>
+	            <item name="Download"		href="https://sourceforge.net/project/platformdownload.php?group_id=214352"/>
 	     </menu>
      	<menu name="How to run">
             <item 	name="Ant Usage"
