@@ -21,110 +21,100 @@
 -->
 <project name="MBean-Monitor" default="compile">
 
-	<property environment="env"/>
-	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}"/>
-	<!--property name="xmlfile" value="src/main/config/jbossreportdefault.xml"/-->
-	<property name="xmlfile" value="/data/Work/MBean-Monitor/jbossreportdgddi.xml"/>
-	<property name="rep" value="/tmp/JbossReport/current"/>
+	<property environment="env" />
+	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}" />
+	<property name="xmlfile" value="src/main/config/jbossreportdefault.xml"/>
+	<property name="rep" value="/tmp/jboss-monitor/current" />
 
-	<property environment="env"/>
-	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}"/>
-	<property name="version" value="1.0-alpha"/>
+	<property environment="env" />
+	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}" />
+	<property name="version" value="1.1-alpha" />
 
 	<path id="classpath">
-		<pathelement location="target/mbeanmonitoring-${version}.jar"/>
+		<pathelement location="target/mbeanmonitoring-${version}.jar" />
 		<fileset dir="${env.JBOSS_HOME}">
-			<include name="client/jbossall-client.jar"/>
-			<include name="server/all/lib/jboss-management.jar"/>
-			<include name="client/log4j.jar"/>
+			<include name="client/jbossall-client.jar" />
+			<include name="server/all/lib/jboss-management.jar" />
+			<include name="client/log4j.jar" />
 		</fileset>
 
 		<fileset dir="lib">
-			<include name="*.jar"/>
+			<include name="*.jar" />
 		</fileset>
 	</path>
 
 	<target name="clean">
 		<delete includeEmptyDirs="true" quiet="true">
-			<fileset dir="target"/>
+			<fileset dir="classes" />
+			<fileset dir="target" />
 		</delete>
 	</target>
 
 	<target name="cleancastor">
 		<delete includeEmptyDirs="true" quiet="true">
-			<fileset dir="src/main/java/org/sourceforge/mbeanmonitoring/report/castor" includes="**/*.java"/>
+			<fileset dir="src/main/java/org/sourceforge/mbeanmonitoring/report/castor" includes="**/*.java" />
 		</delete>
 	</target>
 
-	<target name="init" >
+	<target name="init">
 		<mkdir dir="target" />
 		<mkdir dir="target/classes" />
 		<mkdir dir="target/javadoc" />
 	</target>
 
 	<target name="compile" depends="init">
-		<javac srcdir="src/main/java" 
-				destdir="target/classes" debug="on" deprecation="on" optimize="off">
-			<classpath refid="classpath"/>
+		<javac srcdir="src/main/java" destdir="target/classes" debug="on" deprecation="on" optimize="off">
+			<classpath refid="classpath" />
 		</javac>
-		<copy todir="target/classes" >
+		<copy todir="target/classes">
 			<fileset dir="src/main">
-				<include name="config/**"/>
+				<include name="config/**" />
 			</fileset>
 		</copy>
-		<jar destfile="target/mbeanmonitoring-${version}.jar" basedir="target/classes"/>
+		<jar destfile="target/mbeanmonitoring-${version}.jar" basedir="target/classes" />
 	</target>
 
 	<target name="run">
-		<java 	fork="yes" 
-				classname="org.sourceforge.mbeanmonitoring.report.Capture">
-			<classpath refid="classpath"/>
-			<arg line="${xmlfile}"/>
+		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.Capture">
+			<classpath refid="classpath" />
+			<arg line="${xmlfile}" />
 		</java>
 	</target>
 
 	<target name="castor" depends="cleancastor">
 		<java fork="yes" classname="org.exolab.castor.builder.SourceGenerator">
-			<classpath refid="classpath"/>
-			<arg line="-i src/main/config/jbossreportserver.xsd -package org.sourceforge.mbeanmonitoring.report.castor -dest src/main/java"/>
+			<classpath refid="classpath" />
+			<arg line="-i src/main/config/jbossreportserver.xsd -package org.sourceforge.mbeanmonitoring.report.castor -dest src/main/java" />
 		</java>
 	</target>
 
 	<target name="graph">
 		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.Graph">
-			<classpath refid="classpath"/>
-			<arg line="${xmlfile}"/>
+			<classpath refid="classpath" />
+			<arg line="${xmlfile}" />
 		</java>
 	</target>
 
 	<target name="graph-batch" depends="compile">
 		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.BatchGraph">
-			<classpath refid="classpath"/>
-			<arg line="${rep}"/>
+			<classpath refid="classpath" />
+			<arg line="${rep}" />
 		</java>
 	</target>
-	
+
 	<target name="release" depends="castor,compile">
 		<echo>Run mvn package site (successfully) before this</echo>
-		
-		<zip 	destfile="target/mbeanmonitoring-${version}.zip">
+
+		<zip destfile="target/mbeanmonitoring-${version}.zip">
 			<zipfileset dir="target/site/apidocs/" 
 						prefix="mbeanmonitoring/docs"/>
-			<zipfileset dir="lib" 
-						prefix="mbeanmonitoring/lib"/>						
+			<zipfileset dir="lib" prefix="mbeanmonitoring/lib" />
 			<zipfileset dir="src/main/ant" 
 						includes="build.xml"
 						prefix="mbeanmonitoring"/>
-			<zipfileset dir="target" 
-						prefix="mbeanmonitoring"
-						includes="mbeanmonitoring-${version}.jar"/>
-			<zipfileset dir="src/main/config" 
-						prefix="mbeanmonitoring/config"
-						includes="**.*"/>
-			<zipfileset dir="src/main/tools" 
-						prefix="mbeanmonitoring/tools"
-						includes="**.*"/>
-			
-		</zip>	
+			<zipfileset dir="target" prefix="mbeanmonitoring" includes="mbeanmonitoring-${version}.jar" />
+			<zipfileset dir="src/main/config" prefix="mbeanmonitoring/config" includes="**.*" />
+			<zipfileset filemode="555" dir="src/main/tools" prefix="mbeanmonitoring/tools" includes="**.*" />
+		</zip>
 	</target>
 </project>

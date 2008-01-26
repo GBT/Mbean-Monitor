@@ -135,6 +135,7 @@ public class BatchGraph extends JFrame {
 				}
 
 			} catch (StringIndexOutOfBoundsException e) {
+				e.printStackTrace();
 				eof = true;
 			} catch (IOException e) {
 				eof = true;
