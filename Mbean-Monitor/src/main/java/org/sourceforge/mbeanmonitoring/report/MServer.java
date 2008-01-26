@@ -20,6 +20,7 @@ package org.sourceforge.mbeanmonitoring.report;
  **
  */
 
+import java.io.NotSerializableException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -71,6 +72,10 @@ public class MServer implements Runnable {
 						Object result = null;
 						try {
 							result = this.adaptor.getAttribute(this.mbeans[i], getAttributs(i)[j]);
+						} catch (NotSerializableException e) {
+				            result = this.adaptor.invoke(this.mbeans[i], "list" + getAttributs(i)[j], null, null) ;
+							System.out.println("Invocation de " + getAttributs(i)[j] + " : " + result.toString()) ;
+							result = "0";
 						} catch (InstanceNotFoundException e) {
 							result = "0";
 						}

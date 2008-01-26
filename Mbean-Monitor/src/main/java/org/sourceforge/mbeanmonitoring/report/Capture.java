@@ -69,7 +69,7 @@ public class Capture {
 			File folderFile = new File(folder);
 			// test if current folder exist
 			if (folderFile != null || folderFile.exists()) {
-				SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy.hh_mm_ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
 				Date date = new Date();
 				String folderArchive = sdf.format(date);// + "." + fichierXML;
 				succes = folderFile.renameTo(new File(this.params.getGenereTo() + System.getProperty("file.separator")
