@@ -4,6 +4,7 @@
 	<classpathentry kind="lib" path="lib/xerces.jar"/>
 	<classpathentry kind="lib" path="lib/castor-1.1.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/castor-1.1.2.1-codegen.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
 	<classpathentry kind="var" path="JBOSS_HOME/client/jbossall-client.jar"/>
 	<classpathentry kind="var" path="JBOSS_HOME/server/all/lib/jboss-management.jar"/>
 	<classpathentry kind="var" path="JBOSS_HOME/client/log4j.jar"/>
