@@ -62,7 +62,7 @@
 		<mkdir dir="target/javadoc" />
 	</target>
 
-	<target name="compile" depends="init">
+	<target name="compile" depends="init,castor">
 		<javac srcdir="src/main/java" destdir="target/classes" debug="on" deprecation="on" optimize="off">
 			<classpath refid="classpath" />
 		</javac>
