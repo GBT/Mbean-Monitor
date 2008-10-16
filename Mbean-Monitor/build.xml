@@ -71,7 +71,11 @@
 				<include name="config/**" />
 			</fileset>
 		</copy>
-		<jar destfile="target/mbeanmonitoring-${version}.jar" basedir="target/classes" />
+		<jar destfile="target/mbeanmonitoring-${version}.jar" basedir="target/classes">
+		    <manifest>
+		    	<attribute name="Main-Class" value="org.sourceforge.mbeanmonitoring.report.Capture"/>
+		    </manifest>
+		</jar>
 	</target>
 
 	<target name="run">
