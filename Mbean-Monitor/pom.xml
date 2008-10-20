@@ -110,7 +110,7 @@ along with this program; if not, write to the Free Software
 	                   <packaging>org.sourceforge.mbeanmonitoring.report.castor</packaging>
 	             </configuration>
 	           </execution>
-          </executions> 
+          </executions>
        </plugin>
 
     </plugins>
@@ -124,7 +124,7 @@ along with this program; if not, write to the Free Software
 		<dependency>
 		    <groupId>castor</groupId>
 		    <artifactId>castor</artifactId>
-		    <version>1.0</version>
+		    <version>1.1.2.1</version>
 		</dependency>
 
 		<dependency>
