@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import javax.naming.InitialContext;
 
@@ -44,6 +45,7 @@ public class Capture {
 	static String KEY_MBEAN_FILE = "MBean.filename";
 	static String KEY_MBEAN_NAME = "name";
 	static String KEY_MBEAN_ATTRS = "attrs";
+	static String KEY_MBEAN_REGS = "regs";
 	static String KEY_APPENDER = "appender";
 
 	static String CURRENT_DIRECTORY = "current";
@@ -69,7 +71,7 @@ public class Capture {
 			File folderFile = new File(folder);
 			// test if current folder exist
 			if (folderFile != null || folderFile.exists()) {
-				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy.hh_mm_ss");
 				Date date = new Date();
 				String folderArchive = sdf.format(date);// + "." + fichierXML;
 				succes = folderFile.renameTo(new File(this.params.getGenereTo() + System.getProperty("file.separator")
@@ -197,8 +199,11 @@ public class Capture {
 
 			int nbMBeansAttrs = mbeans[i].getAttribute().length;
 			String[] attrs = new String[nbMBeansAttrs];
+			Pattern[] regs = new Pattern[nbMBeansAttrs];
 			for (int j = 0; j < nbMBeansAttrs; j++) {
 				attrs[j] = mbeans[i].getAttribute()[j].getName();
+				final String pat=mbeans[i].getAttribute()[j].getRegexpr();
+				if (pat!=null) regs[j] = Pattern.compile(pat);
 				Stat[] stats = mbeans[i].getAttribute()[j].getStat();
 
 				if (stats == null)
@@ -206,6 +211,7 @@ public class Capture {
 				newInfos[i].put(attrs[j], stats);
 			}
 			newInfos[i].put(KEY_MBEAN_ATTRS, attrs);
+			newInfos[i].put(KEY_MBEAN_REGS, regs);
 		}
 
 		this.infos = newInfos;

@@ -1,21 +1,26 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
 package org.sourceforge.mbeanmonitoring.report;
 
 /**
- **      Author:
- **              Laurent Le Grandois <Laurent.Le.Grandois@gmail.com>
- **              Gilles Bardouillet  <Gilles.Bardouillet@gmail.com>
+ **      Author:
+ **              Laurent Le Grandois <Laurent.Le.Grandois@gmail.com>
+ **              Gilles Bardouillet  <Gilles.Bardouillet@gmail.com>
+ **              Philippe Prados
  **
- **  This program is free software; you can redistribute it and/or modify
+ **  This program is free software; you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
- **  the Free Software Foundation; either version 2 of the License, or
- **  (at your option) any later version.
+ **  the Free Software Foundation; either version 2 of the License, or
+ **  (at your option) any later version.
  **
  ** This program is distributed in the hope that it will be useful,
- **  but WITHOUT ANY WARRANTY; without even the implied warranty of
- **  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- **  GNU General Public License for more details.
+ **  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ **  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ **  GNU General Public License for more details.
  **
- **  You should have received a copy of the GNU General Public License
+ **  You should have received a copy of the GNU General Public License
  ** along with this program; if not, write to the Free Software
  **
  */
@@ -23,6 +28,7 @@ package org.sourceforge.mbeanmonitoring.report;
 import java.io.NotSerializableException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import javax.management.InstanceNotFoundException;
 import javax.management.ObjectName;
@@ -37,6 +43,8 @@ import org.jboss.jmx.adaptor.rmi.RMIAdaptor;
 import org.jboss.management.j2ee.statistics.EntityBeanStatsImpl;
 import org.sourceforge.mbeanmonitoring.report.castor.Stat;
 import org.sourceforge.mbeanmonitoring.report.castor.types.MethodStatNameType;
+
+import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
 
 public class MServer implements Runnable {
 
@@ -54,6 +62,10 @@ public class MServer implements Runnable {
 
 	private String[] getAttributs(int index) {
 		return ((String[]) this.infos[index].get(Capture.KEY_MBEAN_ATTRS));
+	}
+
+	private Pattern[] getRegexpr(int index) {
+		return ((Pattern[]) this.infos[index].get(Capture.KEY_MBEAN_REGS));
 	}
 
 	private void getData() {
@@ -79,6 +91,11 @@ public class MServer implements Runnable {
 						} catch (InstanceNotFoundException e) {
 							result = "0";
 						}
+						if (result.getClass().isArray())
+						{
+							result=((Object[])result)[0];
+						}
+
 						if (result instanceof Stats) {
 							Stats st = (Stats) result;
 							Statistic[] stats = st.getStatistics();
@@ -133,7 +150,15 @@ public class MServer implements Runnable {
 								} else
 									datas.append("0");
 							}
-						} else {
+						}
+						else {
+							final Pattern pat=getRegexpr(i)[j];
+							if (pat!=null) {
+								final java.util.regex.Matcher matcher=pat.matcher(result.toString());
+								if (matcher.find())	{
+									result=matcher.group(1);
+								}
+							}
 							datas.append(result);
 						}
 					}

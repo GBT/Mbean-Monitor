@@ -37,6 +37,11 @@ public class Attribute implements java.io.Serializable {
     private java.lang.String _description = "description";
 
     /**
+     * Field _regexpr.
+     */
+    private java.lang.String _regexpr;
+
+    /**
      * Field _statList.
      */
     private java.util.Vector _statList;
@@ -205,6 +210,16 @@ public class Attribute implements java.io.Serializable {
     public java.lang.String getName(
     ) {
         return this._name;
+    }
+
+    /**
+     * Returns the value of field 'regexpr'.
+     * 
+     * @return the value of field 'Regexpr'.
+     */
+    public java.lang.String getRegexpr(
+    ) {
+        return this._regexpr;
     }
 
     /**
@@ -415,6 +430,16 @@ public class Attribute implements java.io.Serializable {
     public void setName(
             final java.lang.String name) {
         this._name = name;
+    }
+
+    /**
+     * Sets the value of field 'regexpr'.
+     * 
+     * @param regexpr the value of field 'regexpr'.
+     */
+    public void setRegexpr(
+            final java.lang.String regexpr) {
+        this._regexpr = regexpr;
     }
 
     /**
