@@ -10,6 +10,8 @@
 			</xs:sequence>
 			<xs:attribute name="host" type="xs:string" use="optional" default="localhost"/>
 			<xs:attribute name="port" type="xs:short" use="optional" default="1099"/>
+			<xs:attribute name="user" type="xs:string" use="optional"/>
+			<xs:attribute name="password" type="xs:string" use="optional"/>			
 			<xs:attribute name="genereTo" type="xs:anyURI" use="required"/>
 			<xs:attribute name="extension" type="xs:string" use="optional" default="csv"/>
 			<xs:attribute name="MaxFileSize" type="xs:string" use="optional" default="1024KB"/>
