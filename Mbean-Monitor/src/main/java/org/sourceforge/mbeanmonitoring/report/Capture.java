@@ -105,7 +105,7 @@ public class Capture {
 			properties.put(appender + ".layout.ConversionPattern", "%d{dd/MM/yyyy" + this.params.getSeparateur()
 					+ "HH:mm:ss}" + this.params.getSeparateur() + "%m%n");
 			properties.put(appender + ".MaxFileSize", this.params.getMaxFileSize());
-			properties.put(appender + ".MaxBackupIndex", new Integer(this.params.getMaxBackupIndex()).toString());
+			properties.put(appender + ".MaxBackupIndex", Integer.valueOf(this.params.getMaxBackupIndex()).toString());
 		}
 		return properties;
 	}

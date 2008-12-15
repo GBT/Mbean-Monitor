@@ -44,8 +44,6 @@ import org.jboss.management.j2ee.statistics.EntityBeanStatsImpl;
 import org.sourceforge.mbeanmonitoring.report.castor.Stat;
 import org.sourceforge.mbeanmonitoring.report.castor.types.MethodStatNameType;
 
-import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
-
 public class MServer implements Runnable {
 
 	private RMIAdaptor adaptor;
@@ -148,7 +146,7 @@ public class MServer implements Runnable {
 									datas.append(value);
 
 								} else
-									datas.append("0");
+									datas.append('0');
 							}
 						}
 						else {

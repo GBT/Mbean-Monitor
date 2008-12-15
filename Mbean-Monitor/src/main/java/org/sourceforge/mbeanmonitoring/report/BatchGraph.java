@@ -126,7 +126,7 @@ public class BatchGraph extends JFrame {
 					while (st.hasMoreElements()) {
 						String column = st.nextToken();
 						TimeSeries serie = this._series.get(c);
-						serie.addOrUpdate(new Millisecond(measure), new Integer(column));
+						serie.addOrUpdate(new Millisecond(measure), Integer.valueOf((column));
 						c++;
 					}
 
