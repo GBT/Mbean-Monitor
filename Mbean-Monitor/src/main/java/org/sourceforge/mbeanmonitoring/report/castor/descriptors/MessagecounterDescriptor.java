@@ -5,20 +5,20 @@
  * $Id$
  */
 
-package org.sourceforge.mbeanmonitoring.report.castor.types.descriptors;
+package org.sourceforge.mbeanmonitoring.report.castor.descriptors;
 
   //---------------------------------/
  //- Imported classes and packages -/
 //---------------------------------/
 
-import org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType;
+import org.sourceforge.mbeanmonitoring.report.castor.Messagecounter;
 
 /**
- * Class MbeanDomainTypeDescriptor.
+ * Class MessagecounterDescriptor.
  * 
  * @version $Revision$ $Date$
  */
-public class MbeanDomainTypeDescriptor extends org.exolab.castor.xml.util.XMLClassDescriptorImpl {
+public class MessagecounterDescriptor extends org.exolab.castor.xml.util.XMLClassDescriptorImpl {
 
 
       //--------------------------/
@@ -55,10 +55,57 @@ public class MbeanDomainTypeDescriptor extends org.exolab.castor.xml.util.XMLCla
      //- Constructors -/
     //----------------/
 
-    public MbeanDomainTypeDescriptor() {
+    public MessagecounterDescriptor() {
         super();
-        _xmlName = "MbeanDomainType";
-        _elementDefinition = false;
+        _xmlName = "messagecounter";
+        _elementDefinition = true;
+        org.exolab.castor.xml.util.XMLFieldDescriptorImpl  desc           = null;
+        org.exolab.castor.mapping.FieldHandler             handler        = null;
+        org.exolab.castor.xml.FieldValidator               fieldValidator = null;
+        //-- initialize attribute descriptors
+        
+        //-- _name
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.String.class, "_name", "name", org.exolab.castor.xml.NodeType.Attribute);
+        desc.setImmutable(true);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Messagecounter target = (Messagecounter) object;
+                return target.getName();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Messagecounter target = (Messagecounter) object;
+                    target.setName( (java.lang.String) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        desc.setSchemaType("string");
+        desc.setHandler(handler);
+        desc.setRequired(true);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _name
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(1);
+        { //-- local scope
+            org.exolab.castor.xml.validators.StringValidator typeValidator;
+            typeValidator = new org.exolab.castor.xml.validators.StringValidator();
+            fieldValidator.setValidator(typeValidator);
+            typeValidator.setWhiteSpace("preserve");
+        }
+        desc.setValidator(fieldValidator);
+        //-- initialize element descriptors
+        
     }
 
 
@@ -94,7 +141,7 @@ public class MbeanDomainTypeDescriptor extends org.exolab.castor.xml.util.XMLCla
      */
     public java.lang.Class getJavaClass(
     ) {
-        return org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType.class;
+        return org.sourceforge.mbeanmonitoring.report.castor.Messagecounter.class;
     }
 
     /**

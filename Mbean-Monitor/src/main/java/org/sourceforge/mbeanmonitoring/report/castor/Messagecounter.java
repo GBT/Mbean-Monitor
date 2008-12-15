@@ -15,11 +15,11 @@ import org.exolab.castor.xml.Marshaller;
 import org.exolab.castor.xml.Unmarshaller;
 
 /**
- * Class Element.
+ * Class Messagecounter.
  * 
  * @version $Revision$ $Date$
  */
-public class Element implements java.io.Serializable {
+public class Messagecounter implements java.io.Serializable {
 
 
       //--------------------------/
@@ -36,7 +36,7 @@ public class Element implements java.io.Serializable {
      //- Constructors -/
     //----------------/
 
-    public Element() {
+    public Messagecounter() {
         super();
     }
 
@@ -121,12 +121,12 @@ public class Element implements java.io.Serializable {
      * @throws org.exolab.castor.xml.ValidationException if this
      * object is an invalid instance according to the schema
      * @return the unmarshaled
-     * org.sourceforge.mbeanmonitoring.report.castor.Element
+     * org.sourceforge.mbeanmonitoring.report.castor.Messagecounter
      */
-    public static org.sourceforge.mbeanmonitoring.report.castor.Element unmarshal(
+    public static org.sourceforge.mbeanmonitoring.report.castor.Messagecounter unmarshal(
             final java.io.Reader reader)
     throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException {
-        return (org.sourceforge.mbeanmonitoring.report.castor.Element) Unmarshaller.unmarshal(org.sourceforge.mbeanmonitoring.report.castor.Element.class, reader);
+        return (org.sourceforge.mbeanmonitoring.report.castor.Messagecounter) Unmarshaller.unmarshal(org.sourceforge.mbeanmonitoring.report.castor.Messagecounter.class, reader);
     }
 
     /**
