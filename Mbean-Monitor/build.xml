@@ -27,7 +27,6 @@
 	<property name="rep" value="/tmp/jboss-monitor/current" />
 
 	<property environment="env" />
-	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}" />
 	<property name="version" value="1.2" />
 
 	<path id="classpath">
