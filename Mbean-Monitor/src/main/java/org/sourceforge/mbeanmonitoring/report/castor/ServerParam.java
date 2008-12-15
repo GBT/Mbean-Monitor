@@ -42,6 +42,16 @@ public class ServerParam implements java.io.Serializable {
     private boolean _has_port;
 
     /**
+     * Field _user.
+     */
+    private java.lang.String _user;
+
+    /**
+     * Field _password.
+     */
+    private java.lang.String _password;
+
+    /**
      * Field _genereTo.
      */
     private java.lang.String _genereTo;
@@ -299,6 +309,16 @@ public class ServerParam implements java.io.Serializable {
     }
 
     /**
+     * Returns the value of field 'password'.
+     * 
+     * @return the value of field 'Password'.
+     */
+    public java.lang.String getPassword(
+    ) {
+        return this._password;
+    }
+
+    /**
      * Returns the value of field 'port'.
      * 
      * @return the value of field 'Port'.
@@ -316,6 +336,16 @@ public class ServerParam implements java.io.Serializable {
     public java.lang.String getSeparateur(
     ) {
         return this._separateur;
+    }
+
+    /**
+     * Returns the value of field 'user'.
+     * 
+     * @return the value of field 'User'.
+     */
+    public java.lang.String getUser(
+    ) {
+        return this._user;
     }
 
     /**
@@ -545,6 +575,16 @@ public class ServerParam implements java.io.Serializable {
     }
 
     /**
+     * Sets the value of field 'password'.
+     * 
+     * @param password the value of field 'password'.
+     */
+    public void setPassword(
+            final java.lang.String password) {
+        this._password = password;
+    }
+
+    /**
      * Sets the value of field 'port'.
      * 
      * @param port the value of field 'port'.
@@ -563,6 +603,16 @@ public class ServerParam implements java.io.Serializable {
     public void setSeparateur(
             final java.lang.String separateur) {
         this._separateur = separateur;
+    }
+
+    /**
+     * Sets the value of field 'user'.
+     * 
+     * @param user the value of field 'user'.
+     */
+    public void setUser(
+            final java.lang.String user) {
+        this._user = user;
     }
 
     /**

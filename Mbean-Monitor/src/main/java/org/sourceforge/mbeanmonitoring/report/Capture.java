@@ -21,8 +21,6 @@ package org.sourceforge.mbeanmonitoring.report;
  */
 import java.io.File;
 import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,10 +28,13 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.jboss.jmx.adaptor.rmi.RMIAdaptor;
+import org.jboss.security.SecurityAssociation;
+import org.jboss.security.SimplePrincipal;
 import org.sourceforge.mbeanmonitoring.report.castor.Mbean;
 import org.sourceforge.mbeanmonitoring.report.castor.ServerParam;
 import org.sourceforge.mbeanmonitoring.report.castor.Stat;
@@ -166,10 +167,17 @@ public class Capture {
 			 * "org.jboss.naming:org.jnp.interfaces");
 			 */
 
+			
 			Properties jndiProps = new Properties();
-			jndiProps.put("java.naming.factory.initial", "org.jnp.interfaces.NamingContextFactory");
-			jndiProps.put("java.naming.factory.url.pkgs", "org.jboss.naming:org.jnp.interfaces");
-			jndiProps.put("java.naming.provider.url", "jnp://" + this.params.getHost() + ":" + this.params.getPort());
+			jndiProps.put(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory");
+			jndiProps.put(Context.URL_PKG_PREFIXES, "org.jboss.naming:org.jnp.interfaces");
+			jndiProps.put(Context.PROVIDER_URL, "jnp://" + this.params.getHost() + ":" + this.params.getPort());
+			
+
+			if (this.params.getUser() != null)
+				SecurityAssociation.setPrincipal(new SimplePrincipal(this.params.getUser()));
+			if (this.params.getPassword() != null)
+				SecurityAssociation.setCredential(this.params.getPassword());
 
 			// Get the JNDI Context
 			InitialContext ic = new InitialContext(jndiProps);
