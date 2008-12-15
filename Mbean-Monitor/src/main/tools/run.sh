@@ -12,7 +12,8 @@ if [ ! -f "${conf}" ] ; then
    exit 1
 fi
 
-. setclasspath.sh
+BASEDIR="$(dirname $0)"
+. ${BASEDIR}/setclasspath.sh
 
 java -cp ${CLASSPATH} org.sourceforge.mbeanmonitoring.report.Capture ${conf}
 
