@@ -81,8 +81,9 @@ public class BatchGraph extends JFrame {
 		this.setFont(new Font("Arial", Font.BOLD, 12));
 		this.setTitle(this._file);
 		this.setResizable(true);
+		
 		int deb = file.lastIndexOf(File.separator) + 1;
-		int fin = file.indexOf('.');
+		int fin = file.lastIndexOf('.');
 		this._title = file.substring(deb, fin);
 		this._series = new ArrayList<TimeSeries>();
 	}
@@ -178,7 +179,9 @@ public class BatchGraph extends JFrame {
 					graph.fill();
 					graph.pack();
                     graph.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
+					e.printStackTrace();
 					continue;
 				}
 			}
