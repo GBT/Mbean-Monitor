@@ -185,6 +185,49 @@ public class AttributeDescriptor extends org.exolab.castor.xml.util.XMLClassDesc
         desc.setValidator(fieldValidator);
         //-- initialize element descriptors
         
+        //-- _messagecounterList
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(org.sourceforge.mbeanmonitoring.report.castor.Messagecounter.class, "_messagecounterList", "messagecounter", org.exolab.castor.xml.NodeType.Element);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                Attribute target = (Attribute) object;
+                return target.getMessagecounter();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    Attribute target = (Attribute) object;
+                    target.addMessagecounter( (org.sourceforge.mbeanmonitoring.report.castor.Messagecounter) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public void resetValue(Object object) throws IllegalStateException, IllegalArgumentException {
+                try {
+                    Attribute target = (Attribute) object;
+                    target.removeAllMessagecounter();
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return new org.sourceforge.mbeanmonitoring.report.castor.Messagecounter();
+            }
+        };
+        desc.setSchemaType("org.sourceforge.mbeanmonitoring.report.castor.Messagecounter");
+        desc.setHandler(handler);
+        desc.setMultivalued(true);
+        addFieldDescriptor(desc);
+        addSequenceElement(desc);
+        
+        //-- validation code for: _messagecounterList
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        fieldValidator.setMinOccurs(0);
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
         //-- _statList
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(org.sourceforge.mbeanmonitoring.report.castor.Stat.class, "_statList", "stat", org.exolab.castor.xml.NodeType.Element);
         handler = new org.exolab.castor.xml.XMLFieldHandler() {
