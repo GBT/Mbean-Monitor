@@ -24,10 +24,13 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.apache.log4j.Logger;
+
 public class TasksScheduler extends TimerTask {
 	private PoolWorker[] threads;
 	private final LinkedList<Runnable> tasksToExecuteNow;
 	private final LinkedList<Runnable> availableTasks;
+	private final Logger log = Logger.getLogger(Capture.mbeanMonitorLoggerName);
 
 	public TasksScheduler() {
 		tasksToExecuteNow = new LinkedList<Runnable>();
@@ -46,8 +49,8 @@ public class TasksScheduler extends TimerTask {
 			threads[i].setId(i);
 			threads[i].start();
 		}
-		System.out.println("Scheduler: TasksPool=" + maxThreadsNeeded + " / Interval=" + intervalInSec + "s");
-		System.out.println("Scheduler: Hope each task does not last more than " + (intervalInSec * maxThreadsNeeded)
+		log.info("Scheduler: TasksPool=" + maxThreadsNeeded + " / Interval=" + intervalInSec + "s");
+		log.info("Scheduler: Hope each task does not last more than " + (intervalInSec * maxThreadsNeeded)
 				+ "s !");
 		Timer timer = new Timer();
 		timer.schedule((TimerTask) this, 0, intervalInSec * 1000);
@@ -60,7 +63,7 @@ public class TasksScheduler extends TimerTask {
 			// Find a task available to be run
 
 			if (availableTasks.isEmpty())
-				System.out.println("NO TASKS TO RUN... INCREASE THE TASKS POOL SIZE !");
+				log.warn("NO TASKS TO RUN... INCREASE THE TASKS POOL SIZE !");
 
 			while (availableTasks.isEmpty()) {
 				try {
@@ -106,7 +109,7 @@ public class TasksScheduler extends TimerTask {
 				// If we don't catch RuntimeException,
 				// the pool could leak threads
 				try {
-					System.out.println("Worker [" + this.ID + "]: Task launched");
+					log.info("Worker [" + this.ID + "]: Task launched");
 					long dureeDebut = System.currentTimeMillis();
 					r.run();
 					long dureeFin = System.currentTimeMillis();
@@ -114,7 +117,7 @@ public class TasksScheduler extends TimerTask {
 					if (tempsPasse < 0) {
 						tempsPasse = 0;
 					}
-					System.out.println("Worker [" + this.ID + "]: Task done in " + tempsPasse + " ms");
+					log.info("Worker [" + this.ID + "]: Task done in " + tempsPasse + " ms");
 
 					// Puts back this task to the list of tasks available for a
 					// run...
@@ -124,6 +127,7 @@ public class TasksScheduler extends TimerTask {
 					}
 				} catch (RuntimeException e) {
 					e.printStackTrace();
+					log.error("Cautch exception, lets continue ....", e);
 					// You might want to log something here
 				}
 			}

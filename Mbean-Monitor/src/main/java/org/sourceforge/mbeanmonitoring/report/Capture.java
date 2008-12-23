@@ -52,6 +52,7 @@ public class Capture {
 	static String CURRENT_DIRECTORY = "current";
 
 	static boolean isGraphRuntime = false;
+	static String mbeanMonitorLoggerName = "mbeanmonitor";
 
 	private RMIAdaptor rmiServer;
 	private Properties[] infos;
@@ -89,9 +90,9 @@ public class Capture {
 		}
 
 		Properties properties = new Properties();
-
-		for (int i = 0; i < infos.length; i++) {
-
+		
+		for (int i = 0; i < infos.length; i++) 
+		{
 			String mbeanName = this.infos[i].getProperty(KEY_MBEAN_NAME);
 			String fileName = this.infos[i].getProperty(KEY_MBEAN_FILE, mbeanName);
 			System.out.println("Fichier = " + fileName);
@@ -107,6 +108,19 @@ public class Capture {
 			properties.put(appender + ".MaxFileSize", this.params.getMaxFileSize());
 			properties.put(appender + ".MaxBackupIndex", Integer.valueOf(this.params.getMaxBackupIndex()).toString());
 		}
+		
+		//Add my own logger
+		String appender = "log4j.appender." + mbeanMonitorLoggerName;
+		properties.put("log4j.category." + mbeanMonitorLoggerName, "INFO, " + mbeanMonitorLoggerName);
+		properties.put(appender, "org.apache.log4j.RollingFileAppender");
+		properties.put(appender + ".File", mbeanMonitorLoggerName + ".log");
+		System.out.println("Writing mbeanmonitor log to "+new File(mbeanMonitorLoggerName + ".log").getAbsolutePath());
+		properties.put(appender + ".layout", "org.apache.log4j.PatternLayout");
+		properties.put(appender + ".layout.ConversionPattern", "%d{dd/MM/yyyy" + this.params.getSeparateur()
+				+ "HH:mm:ss}" + this.params.getSeparateur() + "%m%n");
+		properties.put(appender + ".MaxFileSize", this.params.getMaxFileSize());
+		properties.put(appender + ".MaxBackupIndex", Integer.valueOf(this.params.getMaxBackupIndex()).toString());
+		
 		return properties;
 	}
 
@@ -126,6 +140,11 @@ public class Capture {
 		FileReader file = null;
 		try {
 			file = new FileReader(fileName);
+			String name = new File(fileName).getName();
+			int point = name.indexOf(".");
+			if (point != -1)
+				name = name.substring(0,point);
+			mbeanMonitorLoggerName += "-"+name;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -155,18 +174,8 @@ public class Capture {
 
 		// Get the JNDI propreties, get the JNDI Context, then get the RMI Adaptor
 
-		try {
-			/*
-			 * The Hardcoded way...
-			 * 
-			 * Properties jndiProps = new Properties();
-			 * jndiProps.put(Context.INITIAL_CONTEXT_FACTORY,
-			 * "org.jnp.interfaces.NamingContextFactory");
-			 * jndiProps.put(Context.PROVIDER_URL, "jnp://localhost:1099");
-			 * jndiProps.put(Context.URL_PKG_PREFIXES,
-			 * "org.jboss.naming:org.jnp.interfaces");
-			 */
-
+		try 
+		{
 			
 			Properties jndiProps = new Properties();
 			jndiProps.put(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory");
