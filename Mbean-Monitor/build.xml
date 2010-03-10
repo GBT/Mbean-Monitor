@@ -22,16 +22,16 @@
 <project name="MBean-Monitor" default="compile">
 
 	<property environment="env" />
-	<property name="JBOSS_HOME" value="${env.JBOSS_HOME}" />
-	<property name="xmlfile" value="/data/Dev/Mbean-Monitor/src/main/config/jbossreportdefault.xml"/>
+	<property name="JBOSS_HOME" value="/opt/jboss/jboss-eap-4.3/jboss-asCP07" />
+	<property name="xmlfile" value="./src/main/config/jbossreportdefault.xml"/>
 	<property name="rep" value="/tmp/jboss-monitor/current" />
 
 	<property environment="env" />
-	<property name="version" value="1.2" />
+	<property name="version" value="1.2.2" />
 
 	<path id="classpath">
 		<pathelement location="target/mbeanmonitoring-${version}.jar" />
-		<fileset dir="${env.JBOSS_HOME}">
+		<fileset dir="${JBOSS_HOME}">
 			<include name="client/jbossall-client.jar" />
 			<include name="server/all/lib/jboss-management.jar" />
 			<include name="client/log4j.jar" />
@@ -80,7 +80,8 @@
 	<target name="run">
 		<java fork="yes" classname="org.sourceforge.mbeanmonitoring.report.Capture">
 			<classpath refid="classpath" />
-			<arg line="${xmlfile}" />
+			<arg line="${xmlfile}"/>
+		    <jvmarg value="-DLoggerFileName=mbeanmonitor"/>
 		</java>
 	</target>
 
