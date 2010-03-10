@@ -113,8 +113,12 @@ public class Capture {
 		String appender = "log4j.appender." + mbeanMonitorLoggerName;
 		properties.put("log4j.category." + mbeanMonitorLoggerName, "INFO, " + mbeanMonitorLoggerName);
 		properties.put(appender, "org.apache.log4j.RollingFileAppender");
-		properties.put(appender + ".File", mbeanMonitorLoggerName + ".log");
-		System.out.println("Writing mbeanmonitor log to "+new File(mbeanMonitorLoggerName + ".log").getAbsolutePath());
+		
+		
+		String file = System.getProperty("LoggerFileName") != null ?System.getProperty("LoggerFileName") : mbeanMonitorLoggerName;
+		File f = new File(this.params.getGenereTo()+File.separatorChar+file + ".log");
+		properties.put(appender + ".File", f.getAbsolutePath());
+		System.out.println("Writing mbeanmonitor log to "+f.getAbsolutePath());
 		properties.put(appender + ".layout", "org.apache.log4j.PatternLayout");
 		properties.put(appender + ".layout.ConversionPattern", "%d{dd/MM/yyyy" + this.params.getSeparateur()
 				+ "HH:mm:ss}" + this.params.getSeparateur() + "%m%n");
@@ -271,7 +275,8 @@ public class Capture {
 
 	public static void main(String[] args) {
 		if (args.length > 0) {
-			for (int i = 0; i < args.length; i++) {
+			for (int i = 0; i < args.length; i++) 
+			{
 				new Capture(args[i]).startCapture();
 			}
 		} else
