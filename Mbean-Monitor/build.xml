@@ -27,7 +27,7 @@
 	<property name="rep" value="/tmp/jboss-monitor/current" />
 
 	<property environment="env" />
-	<property name="version" value="1.2.2" />
+	<property name="version" value="1.2.3" />
 
 	<path id="classpath">
 		<pathelement location="target/mbeanmonitoring-${version}.jar" />
