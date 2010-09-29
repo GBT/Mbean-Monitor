@@ -277,7 +277,10 @@ public class Capture {
 		if (args.length > 0) {
 			for (int i = 0; i < args.length; i++) 
 			{
-				new Capture(args[i]).startCapture();
+				if (args[i].length() > 1)	// Ne pas prendre en compte les caractères &, > ....
+					new Capture(args[i]).startCapture();
+				else
+					return; // Arret de la prise en compte des noms de fichiers 
 			}
 		} else
 			new Capture().startCapture();
