@@ -34,7 +34,7 @@ public class Mbean implements java.io.Serializable {
     /**
      * Field _domain.
      */
-    private org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType _domain;
+    private java.lang.String _domain;
 
     /**
      * Field _filename.
@@ -152,7 +152,7 @@ public class Mbean implements java.io.Serializable {
      * 
      * @return the value of field 'Domain'.
      */
-    public org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType getDomain(
+    public java.lang.String getDomain(
     ) {
         return this._domain;
     }
@@ -296,7 +296,7 @@ public class Mbean implements java.io.Serializable {
      * @param domain the value of field 'domain'.
      */
     public void setDomain(
-            final org.sourceforge.mbeanmonitoring.report.castor.types.MbeanDomainType domain) {
+            final java.lang.String domain) {
         this._domain = domain;
     }
 
