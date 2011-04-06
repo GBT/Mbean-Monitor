@@ -1,9 +1,9 @@
-#Mon Dec 15 12:53:20 CET 2008
-org.sourceforge.mbeanmonitoring.report.castor.ServerParam=org.sourceforge.mbeanmonitoring.report.castor.descriptors.ServerParamDescriptor
+#Wed Apr 06 15:39:16 CEST 2011
 org.sourceforge.mbeanmonitoring.report.castor.Stat=org.sourceforge.mbeanmonitoring.report.castor.descriptors.StatDescriptor
-org.sourceforge.mbeanmonitoring.report.castor.List=org.sourceforge.mbeanmonitoring.report.castor.descriptors.ListDescriptor
+org.sourceforge.mbeanmonitoring.report.castor.ServerParam=org.sourceforge.mbeanmonitoring.report.castor.descriptors.ServerParamDescriptor
 org.sourceforge.mbeanmonitoring.report.castor.MethodStat=org.sourceforge.mbeanmonitoring.report.castor.descriptors.MethodStatDescriptor
-org.sourceforge.mbeanmonitoring.report.castor.Mbean=org.sourceforge.mbeanmonitoring.report.castor.descriptors.MbeanDescriptor
+org.sourceforge.mbeanmonitoring.report.castor.List=org.sourceforge.mbeanmonitoring.report.castor.descriptors.ListDescriptor
 org.sourceforge.mbeanmonitoring.report.castor.Element=org.sourceforge.mbeanmonitoring.report.castor.descriptors.ElementDescriptor
+org.sourceforge.mbeanmonitoring.report.castor.Mbean=org.sourceforge.mbeanmonitoring.report.castor.descriptors.MbeanDescriptor
 org.sourceforge.mbeanmonitoring.report.castor.Attribute=org.sourceforge.mbeanmonitoring.report.castor.descriptors.AttributeDescriptor
 org.sourceforge.mbeanmonitoring.report.castor.Messagecounter=org.sourceforge.mbeanmonitoring.report.castor.descriptors.MessagecounterDescriptor
