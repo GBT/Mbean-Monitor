@@ -1,7 +1,3 @@
-                                                                     
-                                                                     
-                                                                     
-                                             
 package org.sourceforge.mbeanmonitoring.report;
 
 /**
@@ -31,6 +27,7 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 import javax.management.InstanceNotFoundException;
+import javax.management.MBeanServerConnection;
 import javax.management.ObjectName;
 import javax.management.j2ee.statistics.CountStatistic;
 import javax.management.j2ee.statistics.RangeStatistic;
@@ -39,21 +36,20 @@ import javax.management.j2ee.statistics.Stats;
 import javax.management.j2ee.statistics.TimeStatistic;
 
 import org.apache.log4j.Category;
-import org.jboss.jmx.adaptor.rmi.RMIAdaptor;
 import org.jboss.management.j2ee.statistics.EntityBeanStatsImpl;
 import org.sourceforge.mbeanmonitoring.report.castor.Stat;
 import org.sourceforge.mbeanmonitoring.report.castor.types.MethodStatNameType;
 
 public class MServer implements Runnable {
 
-	private RMIAdaptor adaptor;
+	private MBeanServerConnection mbeanServer;
 
 	private Properties[] infos;
 	private ObjectName[] mbeans;
 	private String separator;
 
-	public MServer(RMIAdaptor adaptor, Properties[] infos, String separator) {
-		this.adaptor = adaptor;
+	public MServer(MBeanServerConnection mbeanServer, Properties[] infos, String separator) {
+		this.mbeanServer = mbeanServer;
 		this.infos = infos;
 		this.separator = separator;
 	}
@@ -81,9 +77,9 @@ public class MServer implements Runnable {
 
 						Object result = null;
 						try {
-							result = this.adaptor.getAttribute(this.mbeans[i], getAttributs(i)[j]);
+							result = this.mbeanServer.getAttribute(this.mbeans[i], getAttributs(i)[j]);
 						} catch (NotSerializableException e) {
-				            result = this.adaptor.invoke(this.mbeans[i], "list" + getAttributs(i)[j], null, null) ;
+				            result = this.mbeanServer.invoke(this.mbeans[i], "list" + getAttributs(i)[j], null, null) ;
 							System.out.println("Invocation de " + getAttributs(i)[j] + " : " + result.toString()) ;
 							result = "0";
 						} catch (InstanceNotFoundException e) {
@@ -230,7 +226,7 @@ public class MServer implements Runnable {
 	}
 
 	public void run() {
-		if (this.adaptor != null) {
+		if (this.mbeanServer != null) {
 			this.getData();
 			/*
 			 * //////////////////////////////////////////////////////////////// //

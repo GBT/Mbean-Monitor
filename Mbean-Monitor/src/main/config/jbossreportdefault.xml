@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Paramétrage par défaut de l'outil de capture des MBeans JBOSS-->
-<ServerParam host="localhost" port="1099" genereTo="/tmp/JbossReport" extension="csv" MaxFileSize="14096KB" MaxBackupIndex="10" delay="30" separateur=";" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="jbossreportserver.xsd">
+<ServerParam host="localhost" port="1099" user="admin" password="admin" genereTo="/tmp/JbossReport" extension="csv" MaxFileSize="14096KB" MaxBackupIndex="10" delay="30" separateur=";" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="reportserver.xsd">
 
 <!-- Domain Name:jboss.system ServerInfo -->
         <mbean name="type=ServerInfo" domain="jboss.system" filename="jboss-Memory">

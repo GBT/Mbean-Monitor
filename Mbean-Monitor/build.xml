@@ -23,7 +23,7 @@
 
 	<property environment="env" />
 	<property name="JBOSS_HOME" value="/opt/jboss/jboss-eap-4.3/jboss-asCP07" />
-	<property name="xmlfile" value="./src/main/config/jbossreportdefault.xml"/>
+	<property name="xmlfile" value="./src/main/config/servicemixreportdefault.xml"/>
 	<property name="rep" value="/tmp/jboss-monitor/current" />
 
 	<property environment="env" />
@@ -88,7 +88,7 @@
 	<target name="castor" depends="cleancastor">
 		<java fork="yes" classname="org.exolab.castor.builder.SourceGenerator">
 			<classpath refid="classpath" />
-			<arg line="-i src/main/config/jbossreportserver.xsd -package org.sourceforge.mbeanmonitoring.report.castor -dest src/main/java" />
+			<arg line="-i src/main/config/reportserver.xsd -package org.sourceforge.mbeanmonitoring.report.castor -dest src/main/java" />
 		</java>
 	</target>
 
