@@ -42,6 +42,11 @@ public class ServerParam implements java.io.Serializable {
     private boolean _has_port;
 
     /**
+     * Field _type.
+     */
+    private org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType _type = org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType.valueOf("jnp");
+
+    /**
      * Field _user.
      */
     private java.lang.String _user;
@@ -114,6 +119,7 @@ public class ServerParam implements java.io.Serializable {
     public ServerParam() {
         super();
         setHost("localhost");
+        setType(org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType.valueOf("jnp"));
         setExtension("csv");
         setMaxFileSize("1024KB");
         setSeparateur(";");
@@ -336,6 +342,16 @@ public class ServerParam implements java.io.Serializable {
     public java.lang.String getSeparateur(
     ) {
         return this._separateur;
+    }
+
+    /**
+     * Returns the value of field 'type'.
+     * 
+     * @return the value of field 'Type'.
+     */
+    public org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType getType(
+    ) {
+        return this._type;
     }
 
     /**
@@ -603,6 +619,16 @@ public class ServerParam implements java.io.Serializable {
     public void setSeparateur(
             final java.lang.String separateur) {
         this._separateur = separateur;
+    }
+
+    /**
+     * Sets the value of field 'type'.
+     * 
+     * @param type the value of field 'type'.
+     */
+    public void setType(
+            final org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType type) {
+        this._type = type;
     }
 
     /**

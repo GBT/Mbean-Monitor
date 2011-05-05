@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Paramétrage par défaut de l'outil de capture des MBeans ServiceMix-->
+<ServerParam host="localhost" port="1099" type="jmx" user="smx" password="smx" genereTo="/tmp/ServiceMixReport" extension="csv" MaxFileSize="14096KB" MaxBackupIndex="10" delay="30" separateur=";" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="reportserver.xsd">
+        <mbean name="BrokerName=localhost,Type=Broker" domain="org.apache.activemq" filename="Broker">
+			<attribute name="BrokerId"/>
+			<attribute name="TotalConsumerCount"/>
+			<attribute name="TotalEnqueueCount"/>
+			<attribute name="TotalDequeueCount"/>
+			<attribute name="TotalMessageCount"/>
+			<attribute name="MemoryLimit"/>
+			<attribute name="MemoryPercentUsage"/>
+        </mbean>
+</ServerParam>

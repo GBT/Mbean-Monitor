@@ -149,6 +149,41 @@ public class ServerParamDescriptor extends org.exolab.castor.xml.util.XMLClassDe
             typeValidator.setMaxInclusive((short) 32767);
         }
         desc.setValidator(fieldValidator);
+        //-- _type
+        desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType.class, "_type", "type", org.exolab.castor.xml.NodeType.Attribute);
+        handler = new org.exolab.castor.xml.XMLFieldHandler() {
+            public java.lang.Object getValue( java.lang.Object object ) 
+                throws IllegalStateException
+            {
+                ServerParam target = (ServerParam) object;
+                return target.getType();
+            }
+            public void setValue( java.lang.Object object, java.lang.Object value) 
+                throws IllegalStateException, IllegalArgumentException
+            {
+                try {
+                    ServerParam target = (ServerParam) object;
+                    target.setType( (org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType) value);
+                } catch (java.lang.Exception ex) {
+                    throw new IllegalStateException(ex.toString());
+                }
+            }
+            public java.lang.Object newInstance(java.lang.Object parent) {
+                return null;
+            }
+        };
+        handler = new org.exolab.castor.xml.handlers.EnumFieldHandler(org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType.class, handler);
+        desc.setImmutable(true);
+        desc.setSchemaType("ServerParamTypeType");
+        desc.setHandler(handler);
+        desc.setMultivalued(false);
+        addFieldDescriptor(desc);
+        
+        //-- validation code for: _type
+        fieldValidator = new org.exolab.castor.xml.FieldValidator();
+        { //-- local scope
+        }
+        desc.setValidator(fieldValidator);
         //-- _user
         desc = new org.exolab.castor.xml.util.XMLFieldDescriptorImpl(java.lang.String.class, "_user", "user", org.exolab.castor.xml.NodeType.Attribute);
         desc.setImmutable(true);

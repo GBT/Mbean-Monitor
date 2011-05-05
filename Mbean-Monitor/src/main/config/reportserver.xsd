@@ -7,6 +7,14 @@
 			</xs:sequence>
 			<xs:attribute name="host" type="xs:string" use="optional" default="localhost"/>
 			<xs:attribute name="port" type="xs:short" use="optional" default="1099"/>
+			<xs:attribute name="type" type="xs:short" use="optional" default="jnp">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="jnp"/>
+						<xs:enumeration value="jmx"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>			
 			<xs:attribute name="user" type="xs:string" use="optional"/>
 			<xs:attribute name="password" type="xs:string" use="optional"/>			
 			<xs:attribute name="genereTo" type="xs:anyURI" use="required"/>

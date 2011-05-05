@@ -25,19 +25,25 @@ import java.io.Reader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import javax.management.MBeanServerConnection;
+import javax.management.remote.JMXConnector;
+import javax.management.remote.JMXConnectorFactory;
+import javax.management.remote.JMXServiceURL;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.jboss.jmx.adaptor.rmi.RMIAdaptor;
 import org.jboss.security.SecurityAssociation;
 import org.jboss.security.SimplePrincipal;
 import org.sourceforge.mbeanmonitoring.report.castor.Mbean;
 import org.sourceforge.mbeanmonitoring.report.castor.ServerParam;
 import org.sourceforge.mbeanmonitoring.report.castor.Stat;
+import org.sourceforge.mbeanmonitoring.report.castor.types.ServerParamTypeType;
 
 public class Capture {
 
@@ -54,7 +60,7 @@ public class Capture {
 	static boolean isGraphRuntime = false;
 	static String mbeanMonitorLoggerName = "mbeanmonitor";
 
-	private RMIAdaptor rmiServer;
+	private MBeanServerConnection mBeanServer;
 	private Properties[] infos;
 
 	private static Properties log4j;
@@ -176,27 +182,51 @@ public class Capture {
 			this.params = null;
 		}
 
-		// Get the JNDI propreties, get the JNDI Context, then get the RMI Adaptor
-
 		try 
 		{
+			if (this.params.getType() == ServerParamTypeType.JNP)
+			{
+				//JBoss Stuff
+				// Get the JNDI propreties, get the JNDI Context, then get the RMI Adaptor
+
+				Properties jndiProps = new Properties();
+				jndiProps.put(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory");
+				jndiProps.put(Context.URL_PKG_PREFIXES, "org.jboss.naming:org.jnp.interfaces");
+				
+				String jndiserverurl = "jnp://" + this.params.getHost() + ":" + this.params.getPort();
+				jndiProps.put(Context.PROVIDER_URL, jndiserverurl);
 			
-			Properties jndiProps = new Properties();
-			jndiProps.put(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory");
-			jndiProps.put(Context.URL_PKG_PREFIXES, "org.jboss.naming:org.jnp.interfaces");
-			jndiProps.put(Context.PROVIDER_URL, "jnp://" + this.params.getHost() + ":" + this.params.getPort());
+				if (this.params.getUser() != null)
+					SecurityAssociation.setPrincipal(new SimplePrincipal(this.params.getUser()));
+				if (this.params.getPassword() != null)
+					SecurityAssociation.setCredential(this.params.getPassword());
+				
+				// Get the JNDI Context
+				InitialContext ic = new InitialContext(jndiProps);
+
+				System.out.println("Trying to connect to "+jndiserverurl);
+				// Get the RMI Adaptor
+				this.mBeanServer = (MBeanServerConnection) ic.lookup("jmx/rmi/RMIAdaptor");
+				System.out.println("Connection is OK");		
+			}
+			else if (this.params.getType() == ServerParamTypeType.JMX)
+			{
+				String jndiserverurl = "service:jmx:rmi:///jndi/rmi://" + this.params.getHost() + ":" + this.params.getPort() + "/jmxrmi";
+				JMXServiceURL jmxurl = new JMXServiceURL(jndiserverurl);
+				Map<String, String[]> env = new HashMap<String,String[]>();
 			
-
-			if (this.params.getUser() != null)
-				SecurityAssociation.setPrincipal(new SimplePrincipal(this.params.getUser()));
-			if (this.params.getPassword() != null)
-				SecurityAssociation.setCredential(this.params.getPassword());
-
-			// Get the JNDI Context
-			InitialContext ic = new InitialContext(jndiProps);
-
-			// Get the RMI Adaptor
-			this.rmiServer = (RMIAdaptor) ic.lookup("jmx/rmi/RMIAdaptor");
+				// create a environment hash with username and password
+				if (this.params.getUser() != null && this.params.getPassword() != null)
+				{
+					String[] creds = {this.params.getUser(), this.params.getPassword()};
+					env.put(JMXConnector.CREDENTIALS, creds);				
+				}
+			
+				System.out.println("Trying to connect to "+jndiserverurl);
+				JMXConnector  conn   = JMXConnectorFactory.connect(jmxurl, env);
+				System.out.println("Connection is OK");			
+				this.mBeanServer = conn.getMBeanServerConnection();
+			}
 		}
 
 		catch (Exception e) {
@@ -252,10 +282,10 @@ public class Capture {
 	}
 
 	public void startCapture() {
-		if (this.rmiServer != null && this.params != null && this.params.isValid()) {
+		if (this.mBeanServer != null && this.params != null && this.params.isValid()) {
 			TasksScheduler scheduler = new TasksScheduler();
 
-			MServer server = new MServer(this.rmiServer, this.infos, this.params.getSeparateur());
+			MServer server = new MServer(this.mBeanServer, this.infos, this.params.getSeparateur());
 			for (int i = 0; i < this.params.getNbThreads(); i++) { // nbThreads
 				// threads in
 				// the pool
