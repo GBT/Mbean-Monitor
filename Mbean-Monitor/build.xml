@@ -110,6 +110,7 @@
 		<echo>Run mvn package site (successfully) before this</echo>
 
 		<zip destfile="target/mbeanmonitoring-${version}.zip">
+			<zipfileset file="LICENSE" prefix="mbeanmonitoring"/>
 			<zipfileset dir="target/site/apidocs/" 
 						prefix="mbeanmonitoring/docs"/>
 			<zipfileset dir="lib" prefix="mbeanmonitoring/lib" />
