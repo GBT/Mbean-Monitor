@@ -4,7 +4,7 @@
   <groupId>org.sourceforge.mbeanmonitoring</groupId>
   <artifactId>mbeanmonitoring</artifactId>
   <name>MBean-Monitoring</name>
-  <version>1.2</version>
+  <version>1.2.3</version>
  	 <description>
   	The MBean Monitor tool allow to monitor mbean activity, which include collecting data and 
 	displaying graphical representation of the mbean attribute evolution.
@@ -106,7 +106,7 @@ along with this program; if not, write to the Free Software
           <executions>
 	           <execution>
 	             <configuration>
-	                   <schema>src/main/config/jbossreportserver.xsd</schema>
+	                   <schema>src/main/config/reportserver.xsd</schema>
 	                   <packaging>org.sourceforge.mbeanmonitoring.report.castor</packaging>
 	             </configuration>
 	           </execution>
