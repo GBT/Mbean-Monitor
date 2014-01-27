@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Paramétrage par défaut de l'outil de capture des MBeans JBOSS-->
+<ServerParam host="localhost" type="remoting" port="5447" user="admin" password="admin*2014" genereTo="/tmp/JbossReport" extension="csv" MaxFileSize="14096KB" MaxBackupIndex="10" delay="30" separateur=";" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="reportserver.xsd">
+
+        <mbean name="type=Runtime" domain="java.lang" filename="jboss-runtime">
+                <attribute name="Uptime"/>
+                <attribute name="VmVersion"/>
+        </mbean>
+        
+        <mbean name="type=Memory" domain="java.lang" filename="jboss-memory" >
+        	<attribute name="HeapMemoryUsage" regexpr="contents=.(.*)}"/>
+        	<attribute name="NonHeapMemoryUsage" regexpr="contents=.(.*)}"/>
+        </mbean>
+
+        <mbean name="subsystem=datasources,data-source=JeegyPool,statistics=pool" domain="jboss.as" filename="jdbc-JeegyPool">
+                <attribute name="ActiveCount"/>
+                <attribute name="AvailableCount"/>
+                <attribute name="AverageBlockingTime"/>
+                <attribute name="AverageCreationTime"/>
+                <attribute name="CreatedCount"/>
+                <attribute name="DestroyedCount"/>
+                <attribute name="InUseCount"/>
+                <attribute name="MaxCreationTime"/>
+                <attribute name="MaxUsedCount"/>
+                <attribute name="MaxWaitCount"/>
+                <attribute name="MaxWaitTime"/>
+                <attribute name="TimedOut"/>
+                <attribute name="TotalBlockingTime"/>
+                <attribute name="TotalCreationTime"/>
+        </mbean>
+     
+        <mbean name="subsystem=datasources,data-source=JeegyPool,statistics=jdbc" domain="jboss.as" filename="jdbc-JeegyJDBC">
+                <attribute name="PreparedStatementCacheAccessCount"/>
+                <attribute name="PreparedStatementCacheAddCount"/>
+                <attribute name="PreparedStatementCacheCurrentSize"/>
+                <attribute name="PreparedStatementCacheDeleteCount"/>
+                <attribute name="PreparedStatementCacheHitCount"/>
+                <attribute name="PreparedStatementCacheMissCount"/>
+        </mbean>
+     
+        <mbean name="subsystem=transactions" domain="jboss.as" filename="Transactions">
+                <attribute name="numberOfAbortedTransactions"/>
+                <attribute name="numberOfApplicationRollbacks"/>
+                <attribute name="numberOfCommittedTransactions"/>
+                <attribute name="numberOfHeuristics"/>
+                <attribute name="numberOfInflightTransactions"/>
+                <attribute name="numberOfNestedTransactions"/>
+                <attribute name="numberOfResourceRollbacks"/>
+                <attribute name="numberOfTimedOutTransactions"/>
+                <attribute name="numberOfTransactions"/>
+        </mbean>  
+         
+        <!-- mbean name="name=http-0.0.0.0-8080,type=ThreadPool" domain="jboss.web" filename="tomcat-Pool">
+                <attribute name="currentThreadsBusy"/>
+                <attribute name="currentThreadCount"/>
+                <attribute name="maxThreads"/>
+        </mbean>
+        <mbean name="name=jk-8009,type=ThreadPool" domain="jboss.web" filename="jk-Pool">
+                <attribute name="currentThreadsBusy"/>
+                <attribute name="currentThreadCount"/>
+                <attribute name="maxThreads"/>
+        </mbean-->
+
+        <mbean name="deployment=jeegy.war,subsystem=web" domain="jboss.as" filename="web-jeegy">
+                <attribute name="activeSessions"/>
+                <attribute name="duplicatedSessionIds"/>
+                <attribute name="expiredSessions"/>
+                <attribute name="maxActiveSessions"/>
+                <attribute name="rejectedSessions"/>
+                <attribute name="sessionAvgAliveTime"/>
+                <attribute name="sessionMaxAliveTime"/>
+                <attribute name="sessionsCreated"/>
+        </mbean>
+
+        <mbean name="deployment=jeegy.war,subsystem=web,servlet=spring" domain="jboss.as" filename="web-jeegy-servletX">
+                <attribute name="loadTime"/>
+                <attribute name="maxTime"/>
+                <attribute name="minTime"/>
+                <attribute name="processingTime"/>
+                <attribute name="requestCount"/>
+        </mbean>
+
+        <mbean name="deployment=EJB1.jar,subsystem=ejb3,stateless-session-bean=SLSB1" domain="jboss.as" filename="ejb1">
+                <attribute name="executionTime"/>
+                <attribute name="invocations"/>
+                <attribute name="peakConcurrentInvocations"/>
+                <attribute name="poolAvailableCount"/>
+                <attribute name="poolCreateCount"/>
+                <attribute name="poolCurrentSize"/>
+                <attribute name="poolMaxSize"/>
+                <attribute name="poolRemoveCount"/>
+                <attribute name="waitTime"/>
+        </mbean>
+
+        <mbean name="subsystem=messaging,hornetq-server=default,jms-topic=Bus.Main" domain="jboss.as" filename="jms-bus-main">
+                <attribute name="deliveringCount"/>
+                <attribute name="durableMessageCount"/>
+                <attribute name="durableSubscriptionCount"/>
+                <attribute name="messageCount"/>
+                <attribute name="messagesAdded"/>
+                <attribute name="nonDurableMessageCount"/>
+                <attribute name="nonDurableSubscriptionCount"/>
+                <attribute name="subscriptionCount"/>
+        </mbean>
+        <mbean name="subsystem=messaging,hornetq-server=default,jms-queue=Test-Queue" domain="jboss.as" filename="jms-queue">
+                <attribute name="consumerCount"/>
+                <attribute name="deliveringCount"/>
+                <attribute name="messageCount"/>
+                <attribute name="messagesAdded"/>
+                <attribute name="scheduledCount"/>
+        </mbean>    
+</ServerParam>
