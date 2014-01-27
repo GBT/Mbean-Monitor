@@ -38,8 +38,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.jboss.security.SecurityAssociation;
-import org.jboss.security.SimplePrincipal;
+//import org.jboss.security.SecurityAssociation;
+//import org.jboss.security.SimplePrincipal;
 import org.sourceforge.mbeanmonitoring.report.castor.Mbean;
 import org.sourceforge.mbeanmonitoring.report.castor.ServerParam;
 import org.sourceforge.mbeanmonitoring.report.castor.Stat;
@@ -53,6 +53,7 @@ public class Capture {
 	static String KEY_MBEAN_NAME = "name";
 	static String KEY_MBEAN_ATTRS = "attrs";
 	static String KEY_MBEAN_REGS = "regs";
+	static String KEY_MBEAN_SUB = "sub";
 	static String KEY_APPENDER = "appender";
 
 	static String CURRENT_DIRECTORY = "current";
@@ -196,10 +197,10 @@ public class Capture {
 				String jndiserverurl = "jnp://" + this.params.getHost() + ":" + this.params.getPort();
 				jndiProps.put(Context.PROVIDER_URL, jndiserverurl);
 			
-				if (this.params.getUser() != null)
-					SecurityAssociation.setPrincipal(new SimplePrincipal(this.params.getUser()));
-				if (this.params.getPassword() != null)
-					SecurityAssociation.setCredential(this.params.getPassword());
+				//if (this.params.getUser() != null)
+				//	SecurityAssociation.setPrincipal(new SimplePrincipal(this.params.getUser()));
+				//if (this.params.getPassword() != null)
+				//	SecurityAssociation.setCredential(this.params.getPassword());
 				
 				// Get the JNDI Context
 				InitialContext ic = new InitialContext(jndiProps);
@@ -209,9 +210,15 @@ public class Capture {
 				this.mBeanServer = (MBeanServerConnection) ic.lookup("jmx/rmi/RMIAdaptor");
 				System.out.println("Connection is OK");		
 			}
-			else if (this.params.getType() == ServerParamTypeType.JMX)
+			else if (this.params.getType() == ServerParamTypeType.JMX ||
+					 this.params.getType() == ServerParamTypeType.REMOTING)
 			{
-				String jndiserverurl = "service:jmx:rmi:///jndi/rmi://" + this.params.getHost() + ":" + this.params.getPort() + "/jmxrmi";
+				String jndiserverurl = "";
+				if (params.getType() == ServerParamTypeType.JMX)
+					jndiserverurl = "service:jmx:rmi:///jndi/rmi://" + this.params.getHost() + ":" + this.params.getPort() + "/jmxrmi";
+				else
+					jndiserverurl = "service:jmx:remoting-jmx://" + this.params.getHost() + ":" + this.params.getPort();
+				
 				JMXServiceURL jmxurl = new JMXServiceURL(jndiserverurl);
 				Map<String, String[]> env = new HashMap<String,String[]>();
 			
@@ -227,6 +234,26 @@ public class Capture {
 				System.out.println("Connection is OK");			
 				this.mBeanServer = conn.getMBeanServerConnection();
 			}
+			else if (this.params.getType() == ServerParamTypeType.JMX)
+			{
+				String jndiserverurl = "service:jmx:rmi:///jndi/rmi://" + this.params.getHost() + ":" + this.params.getPort() + "/jmxrmi";
+				//String jndiserverurl = "service:jmx:remoting-jmx://" + this.params.getHost() + ":" + this.params.getPort();
+				JMXServiceURL jmxurl = new JMXServiceURL(jndiserverurl);
+				Map<String, String[]> env = new HashMap<String,String[]>();
+			
+				// create a environment hash with username and password
+				if (this.params.getUser() != null && this.params.getPassword() != null)
+				{
+					String[] creds = {this.params.getUser(), this.params.getPassword()};
+					env.put(JMXConnector.CREDENTIALS, creds);				
+				}
+			
+				System.out.println("Trying to connect to "+jndiserverurl);
+				JMXConnector  conn   = JMXConnectorFactory.connect(jmxurl, env);
+				System.out.println("Connection is OK");			
+				this.mBeanServer = conn.getMBeanServerConnection();
+			}
+			
 		}
 
 		catch (Exception e) {
@@ -256,10 +283,10 @@ public class Capture {
 				final String pat=mbeans[i].getAttribute()[j].getRegexpr();
 				if (pat!=null) regs[j] = Pattern.compile(pat);
 				Stat[] stats = mbeans[i].getAttribute()[j].getStat();
-
 				if (stats == null)
 					stats = new Stat[0];
 				newInfos[i].put(attrs[j], stats);
+				//System.out.println(stats.length);
 			}
 			newInfos[i].put(KEY_MBEAN_ATTRS, attrs);
 			newInfos[i].put(KEY_MBEAN_REGS, regs);

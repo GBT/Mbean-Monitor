@@ -23,6 +23,7 @@ package org.sourceforge.mbeanmonitoring.report;
 
 import java.io.NotSerializableException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
@@ -34,6 +35,7 @@ import javax.management.j2ee.statistics.RangeStatistic;
 import javax.management.j2ee.statistics.Statistic;
 import javax.management.j2ee.statistics.Stats;
 import javax.management.j2ee.statistics.TimeStatistic;
+import javax.management.openmbean.CompositeDataSupport;
 
 import org.apache.log4j.Category;
 import org.jboss.management.j2ee.statistics.EntityBeanStatsImpl;
@@ -69,9 +71,14 @@ public class MServer implements Runnable {
 		try {
 			for (i = 0; i < this.infos.length; i++) {
 				if (this.mbeans[i] != null) {
+					
+					//System.out.println("Mbean "+this.mbeans[i]);
 					String appender = this.infos[i].getProperty(Capture.KEY_APPENDER);//,this.infos[i].getProperty("name"));
+					
 					StringBuffer datas = new StringBuffer();
-					for (int j = 0; j < getAttributs(i).length; j++) {
+					for (int j = 0; j < getAttributs(i).length; j++) 
+					{
+						//System.out.println("Attribut "+getAttributs(i)[j]);
 						if (datas.length() > 0)
 							datas.append(this.separator);
 
@@ -85,65 +92,39 @@ public class MServer implements Runnable {
 						} catch (InstanceNotFoundException e) {
 							result = "0";
 						}
+						
+						//Traitement du résultat en fonction du type de l'attribut
 						if (result.getClass().isArray())
 						{
 							result=((Object[])result)[0];
 						}
 
-						if (result instanceof Stats) {
-							Stats st = (Stats) result;
-							Statistic[] stats = st.getStatistics();
-							if (result instanceof EntityBeanStatsImpl) {
-								EntityBeanStatsImpl entityStats = (EntityBeanStatsImpl) result;
-								stats = entityStats.getStatistics();
-							}
-
+						if (result instanceof Stats) 
+						{
+							decomposeStats(i, datas, result);
+						}
+						
+						if (getRegexpr(i)[j] == null && result instanceof CompositeDataSupport)
+						{
+							CompositeDataSupport st = (CompositeDataSupport) result;
+							//String[] wantedStatsNames = {"init", "used", "committed", "max"};
 							String[] wantedStatsNames = getEntete(i);
 
-							for (int k = 0; k < wantedStatsNames.length; k++) {
-								int ii = -1;
-								do {
-									ii++;
-								} while (ii < stats.length && stats[ii] != null
-										&& !wantedStatsNames[k].startsWith(stats[ii].getName()));
-
-								Statistic stat = null;
-								if (ii < stats.length)
-									stat = stats[ii];
-
+							//System.out.println(st.values());
+							for (int k = 0; k < wantedStatsNames.length; k++) 
+							{
 								if (datas.length() > 0)
 									datas.append(this.separator);
-								if (stat != null) {
-									String value = stat.getDescription();
-									if (stat instanceof RangeStatistic) {
-										value = new Long(((RangeStatistic) stat).getCurrent()).toString();
-									} else if (stat instanceof CountStatistic) {
-										value = new Long(((CountStatistic) stat).getCount()).toString();
-									} else if (stat instanceof TimeStatistic) {
-										TimeStatistic time = (TimeStatistic) stat;
-										if (wantedStatsNames[k].endsWith(MethodStatNameType.COUNT.toString()))
-											value = new Long(time.getCount()).toString();
-										else if (wantedStatsNames[k].endsWith(MethodStatNameType.MAX_TIME.toString()))
-											value = new Long(time.getMaxTime()).toString();
-										else if (wantedStatsNames[k].endsWith(MethodStatNameType.MIN_TIME.toString()))
-											value = new Long(time.getMinTime()).toString();
-										else if (wantedStatsNames[k].endsWith(MethodStatNameType.TOTAL_TIME.toString()))
-											value = new Long(time.getTotalTime()).toString();
-										else if (wantedStatsNames[k].endsWith(MethodStatNameType.MOY_TIME.toString())) {
-											long totalTime = time.getTotalTime();
-											long count = time.getCount();
-											if (count != 0) {
-												value = new Long(totalTime / count).toString();
-											} else {
-												value = "-1";
-											}
-										}
-									}
-									datas.append(value);
-
-								} else
-									datas.append('0');
+								//System.out.println(">>"+wantedStatsNames[k]+"<<");
+								Object stat = st.get(wantedStatsNames[k]);
+								//System.out.println("result="+stat);
+								if (stat != null) 
+								{
+									datas.append(stat);
+								}
 							}
+							System.out.println(mbeans[i]+":"+datas);
+								
 						}
 						else {
 							final Pattern pat=getRegexpr(i)[j];
@@ -167,17 +148,77 @@ public class MServer implements Runnable {
 		}
 	}
 
-	private String[] getEntete(int index) {
-		String[] attributs = getAttributs(index);
+	private void decomposeStats(int mbeanIndex, StringBuffer datas,
+			Object result)
+	{
+		Stats st = (Stats) result;
+		Statistic[] stats = st.getStatistics();
+		if (result instanceof EntityBeanStatsImpl) {
+			EntityBeanStatsImpl entityStats = (EntityBeanStatsImpl) result;
+			stats = entityStats.getStatistics();
+		}
+
+		String[] wantedStatsNames = getEntete(mbeanIndex);
+
+		for (int k = 0; k < wantedStatsNames.length; k++) {
+			int ii = -1;
+			do {
+				ii++;
+			} while (ii < stats.length && stats[ii] != null
+					&& !wantedStatsNames[k].startsWith(stats[ii].getName()));
+
+			Statistic stat = null;
+			if (ii < stats.length)
+				stat = stats[ii];
+
+			if (datas.length() > 0)
+				datas.append(this.separator);
+			if (stat != null) {
+				String value = stat.getDescription();
+				if (stat instanceof RangeStatistic) {
+					value = new Long(((RangeStatistic) stat).getCurrent()).toString();
+				} else if (stat instanceof CountStatistic) {
+					value = new Long(((CountStatistic) stat).getCount()).toString();
+				} else if (stat instanceof TimeStatistic) {
+					TimeStatistic time = (TimeStatistic) stat;
+					if (wantedStatsNames[k].endsWith(MethodStatNameType.COUNT.toString()))
+						value = new Long(time.getCount()).toString();
+					else if (wantedStatsNames[k].endsWith(MethodStatNameType.MAX_TIME.toString()))
+						value = new Long(time.getMaxTime()).toString();
+					else if (wantedStatsNames[k].endsWith(MethodStatNameType.MIN_TIME.toString()))
+						value = new Long(time.getMinTime()).toString();
+					else if (wantedStatsNames[k].endsWith(MethodStatNameType.TOTAL_TIME.toString()))
+						value = new Long(time.getTotalTime()).toString();
+					else if (wantedStatsNames[k].endsWith(MethodStatNameType.MOY_TIME.toString())) {
+						long totalTime = time.getTotalTime();
+						long count = time.getCount();
+						if (count != 0) {
+							value = new Long(totalTime / count).toString();
+						} else {
+							value = "-1";
+						}
+					}
+				}
+				datas.append(value);
+
+			} else
+				datas.append('0');
+		}
+	}
+
+	private String[] getEntete(int mbeanindex) {
+		String[] attributs = getAttributs(mbeanindex);
 		ArrayList<String> result = new ArrayList<String>(attributs.length);
 		for (int i = 0; i < attributs.length; i++) {
-			Stat[] stats = (Stat[]) this.infos[index].get(attributs[i]);
+			Stat[] stats = (Stat[]) this.infos[mbeanindex].get(attributs[i]);
 
 			if (stats.length != 0) {
 				for (int j = 0; j < stats.length; j++) {
 					Stat st = stats[j];
 					if (st.getMethodStatCount() == 0)
+					{
 						result.add(st.getName());
+					}
 					else
 						for (int k = 0; k < st.getMethodStat().length; k++) {
 							result.add(st.getName() + "." + st.getMethodStat(k).getName());
@@ -191,7 +232,7 @@ public class MServer implements Runnable {
 		result.toArray(attributs);
 		return attributs;
 	}
-
+	
 	private void getMBeans() {
 		this.mbeans = new ObjectName[infos.length];
 

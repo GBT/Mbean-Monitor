@@ -1,4 +1,4 @@
-#Thu May 05 10:14:36 CEST 2011
+#Mon Jan 27 17:09:45 CET 2014
 org.sourceforge.mbeanmonitoring.report.castor.Stat=org.sourceforge.mbeanmonitoring.report.castor.descriptors.StatDescriptor
 org.sourceforge.mbeanmonitoring.report.castor.ServerParam=org.sourceforge.mbeanmonitoring.report.castor.descriptors.ServerParamDescriptor
 org.sourceforge.mbeanmonitoring.report.castor.MethodStat=org.sourceforge.mbeanmonitoring.report.castor.descriptors.MethodStatDescriptor
