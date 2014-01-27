@@ -23,7 +23,6 @@ package org.sourceforge.mbeanmonitoring.report;
 
 import java.io.NotSerializableException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
@@ -31,6 +30,7 @@ import javax.management.InstanceNotFoundException;
 import javax.management.MBeanServerConnection;
 import javax.management.ObjectName;
 import javax.management.j2ee.statistics.CountStatistic;
+import javax.management.j2ee.statistics.EntityBeanStats;
 import javax.management.j2ee.statistics.RangeStatistic;
 import javax.management.j2ee.statistics.Statistic;
 import javax.management.j2ee.statistics.Stats;
@@ -38,7 +38,6 @@ import javax.management.j2ee.statistics.TimeStatistic;
 import javax.management.openmbean.CompositeDataSupport;
 
 import org.apache.log4j.Category;
-import org.jboss.management.j2ee.statistics.EntityBeanStatsImpl;
 import org.sourceforge.mbeanmonitoring.report.castor.Stat;
 import org.sourceforge.mbeanmonitoring.report.castor.types.MethodStatNameType;
 
@@ -153,8 +152,8 @@ public class MServer implements Runnable {
 	{
 		Stats st = (Stats) result;
 		Statistic[] stats = st.getStatistics();
-		if (result instanceof EntityBeanStatsImpl) {
-			EntityBeanStatsImpl entityStats = (EntityBeanStatsImpl) result;
+		if (result instanceof EntityBeanStats) {
+			EntityBeanStats entityStats = (EntityBeanStats) result;
 			stats = entityStats.getStatistics();
 		}
 
