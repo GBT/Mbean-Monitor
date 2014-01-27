@@ -42,19 +42,9 @@ public class Attribute implements java.io.Serializable {
     private java.lang.String _regexpr;
 
     /**
-     * Field _messagecounterList.
-     */
-    private java.util.Vector _messagecounterList;
-
-    /**
      * Field _statList.
      */
     private java.util.Vector _statList;
-
-    /**
-     * Field _listList.
-     */
-    private java.util.Vector _listList;
 
 
       //----------------/
@@ -64,71 +54,13 @@ public class Attribute implements java.io.Serializable {
     public Attribute() {
         super();
         setDescription("description");
-        this._messagecounterList = new java.util.Vector();
         this._statList = new java.util.Vector();
-        this._listList = new java.util.Vector();
     }
 
 
       //-----------/
      //- Methods -/
     //-----------/
-
-    /**
-     * 
-     * 
-     * @param vList
-     * @throws java.lang.IndexOutOfBoundsException if the index
-     * given is outside the bounds of the collection
-     */
-    public void addList(
-            final org.sourceforge.mbeanmonitoring.report.castor.List vList)
-    throws java.lang.IndexOutOfBoundsException {
-        this._listList.addElement(vList);
-    }
-
-    /**
-     * 
-     * 
-     * @param index
-     * @param vList
-     * @throws java.lang.IndexOutOfBoundsException if the index
-     * given is outside the bounds of the collection
-     */
-    public void addList(
-            final int index,
-            final org.sourceforge.mbeanmonitoring.report.castor.List vList)
-    throws java.lang.IndexOutOfBoundsException {
-        this._listList.add(index, vList);
-    }
-
-    /**
-     * 
-     * 
-     * @param vMessagecounter
-     * @throws java.lang.IndexOutOfBoundsException if the index
-     * given is outside the bounds of the collection
-     */
-    public void addMessagecounter(
-            final org.sourceforge.mbeanmonitoring.report.castor.Messagecounter vMessagecounter)
-    throws java.lang.IndexOutOfBoundsException {
-        this._messagecounterList.addElement(vMessagecounter);
-    }
-
-    /**
-     * 
-     * 
-     * @param index
-     * @param vMessagecounter
-     * @throws java.lang.IndexOutOfBoundsException if the index
-     * given is outside the bounds of the collection
-     */
-    public void addMessagecounter(
-            final int index,
-            final org.sourceforge.mbeanmonitoring.report.castor.Messagecounter vMessagecounter)
-    throws java.lang.IndexOutOfBoundsException {
-        this._messagecounterList.add(index, vMessagecounter);
-    }
 
     /**
      * 
@@ -159,29 +91,6 @@ public class Attribute implements java.io.Serializable {
     }
 
     /**
-     * Method enumerateList.
-     * 
-     * @return an Enumeration over all
-     * org.sourceforge.mbeanmonitoring.report.castor.List elements
-     */
-    public java.util.Enumeration enumerateList(
-    ) {
-        return this._listList.elements();
-    }
-
-    /**
-     * Method enumerateMessagecounter.
-     * 
-     * @return an Enumeration over all
-     * org.sourceforge.mbeanmonitoring.report.castor.Messagecounter
-     * elements
-     */
-    public java.util.Enumeration enumerateMessagecounter(
-    ) {
-        return this._messagecounterList.elements();
-    }
-
-    /**
      * Method enumerateStat.
      * 
      * @return an Enumeration over all
@@ -200,99 +109,6 @@ public class Attribute implements java.io.Serializable {
     public java.lang.String getDescription(
     ) {
         return this._description;
-    }
-
-    /**
-     * Method getList.
-     * 
-     * @param index
-     * @throws java.lang.IndexOutOfBoundsException if the index
-     * given is outside the bounds of the collection
-     * @return the value of the
-     * org.sourceforge.mbeanmonitoring.report.castor.List at the
-     * given index
-     */
-    public org.sourceforge.mbeanmonitoring.report.castor.List getList(
-            final int index)
-    throws java.lang.IndexOutOfBoundsException {
-        // check bounds for index
-        if (index < 0 || index >= this._listList.size()) {
-            throw new IndexOutOfBoundsException("getList: Index value '" + index + "' not in range [0.." + (this._listList.size() - 1) + "]");
-        }
-        
-        return (org.sourceforge.mbeanmonitoring.report.castor.List) _listList.get(index);
-    }
-
-    /**
-     * Method getList.Returns the contents of the collection in an
-     * Array.  <p>Note:  Just in case the collection contents are
-     * changing in another thread, we pass a 0-length Array of the
-     * correct type into the API call.  This way we <i>know</i>
-     * that the Array returned is of exactly the correct length.
-     * 
-     * @return this collection as an Array
-     */
-    public org.sourceforge.mbeanmonitoring.report.castor.List[] getList(
-    ) {
-        org.sourceforge.mbeanmonitoring.report.castor.List[] array = new org.sourceforge.mbeanmonitoring.report.castor.List[0];
-        return (org.sourceforge.mbeanmonitoring.report.castor.List[]) this._listList.toArray(array);
-    }
-
-    /**
-     * Method getListCount.
-     * 
-     * @return the size of this collection
-     */
-    public int getListCount(
-    ) {
-        return this._listList.size();
-    }
-
-    /**
-     * Method getMessagecounter.
-     * 
-     * @param index
-     * @throws java.lang.IndexOutOfBoundsException if the index
-     * given is outside the bounds of the collection
-     * @return the value of the
-     * org.sourceforge.mbeanmonitoring.report.castor.Messagecounter
-     * at the given index
-     */
-    public org.sourceforge.mbeanmonitoring.report.castor.Messagecounter getMessagecounter(
-            final int index)
-    throws java.lang.IndexOutOfBoundsException {
-        // check bounds for index
-        if (index < 0 || index >= this._messagecounterList.size()) {
-            throw new IndexOutOfBoundsException("getMessagecounter: Index value '" + index + "' not in range [0.." + (this._messagecounterList.size() - 1) + "]");
-        }
-        
-        return (org.sourceforge.mbeanmonitoring.report.castor.Messagecounter) _messagecounterList.get(index);
-    }
-
-    /**
-     * Method getMessagecounter.Returns the contents of the
-     * collection in an Array.  <p>Note:  Just in case the
-     * collection contents are changing in another thread, we pass
-     * a 0-length Array of the correct type into the API call. 
-     * This way we <i>know</i> that the Array returned is of
-     * exactly the correct length.
-     * 
-     * @return this collection as an Array
-     */
-    public org.sourceforge.mbeanmonitoring.report.castor.Messagecounter[] getMessagecounter(
-    ) {
-        org.sourceforge.mbeanmonitoring.report.castor.Messagecounter[] array = new org.sourceforge.mbeanmonitoring.report.castor.Messagecounter[0];
-        return (org.sourceforge.mbeanmonitoring.report.castor.Messagecounter[]) this._messagecounterList.toArray(array);
-    }
-
-    /**
-     * Method getMessagecounterCount.
-     * 
-     * @return the size of this collection
-     */
-    public int getMessagecounterCount(
-    ) {
-        return this._messagecounterList.size();
     }
 
     /**
@@ -410,71 +226,9 @@ public class Attribute implements java.io.Serializable {
 
     /**
      */
-    public void removeAllList(
-    ) {
-        this._listList.clear();
-    }
-
-    /**
-     */
-    public void removeAllMessagecounter(
-    ) {
-        this._messagecounterList.clear();
-    }
-
-    /**
-     */
     public void removeAllStat(
     ) {
         this._statList.clear();
-    }
-
-    /**
-     * Method removeList.
-     * 
-     * @param vList
-     * @return true if the object was removed from the collection.
-     */
-    public boolean removeList(
-            final org.sourceforge.mbeanmonitoring.report.castor.List vList) {
-        boolean removed = _listList.remove(vList);
-        return removed;
-    }
-
-    /**
-     * Method removeListAt.
-     * 
-     * @param index
-     * @return the element removed from the collection
-     */
-    public org.sourceforge.mbeanmonitoring.report.castor.List removeListAt(
-            final int index) {
-        java.lang.Object obj = this._listList.remove(index);
-        return (org.sourceforge.mbeanmonitoring.report.castor.List) obj;
-    }
-
-    /**
-     * Method removeMessagecounter.
-     * 
-     * @param vMessagecounter
-     * @return true if the object was removed from the collection.
-     */
-    public boolean removeMessagecounter(
-            final org.sourceforge.mbeanmonitoring.report.castor.Messagecounter vMessagecounter) {
-        boolean removed = _messagecounterList.remove(vMessagecounter);
-        return removed;
-    }
-
-    /**
-     * Method removeMessagecounterAt.
-     * 
-     * @param index
-     * @return the element removed from the collection
-     */
-    public org.sourceforge.mbeanmonitoring.report.castor.Messagecounter removeMessagecounterAt(
-            final int index) {
-        java.lang.Object obj = this._messagecounterList.remove(index);
-        return (org.sourceforge.mbeanmonitoring.report.castor.Messagecounter) obj;
     }
 
     /**
@@ -509,76 +263,6 @@ public class Attribute implements java.io.Serializable {
     public void setDescription(
             final java.lang.String description) {
         this._description = description;
-    }
-
-    /**
-     * 
-     * 
-     * @param index
-     * @param vList
-     * @throws java.lang.IndexOutOfBoundsException if the index
-     * given is outside the bounds of the collection
-     */
-    public void setList(
-            final int index,
-            final org.sourceforge.mbeanmonitoring.report.castor.List vList)
-    throws java.lang.IndexOutOfBoundsException {
-        // check bounds for index
-        if (index < 0 || index >= this._listList.size()) {
-            throw new IndexOutOfBoundsException("setList: Index value '" + index + "' not in range [0.." + (this._listList.size() - 1) + "]");
-        }
-        
-        this._listList.set(index, vList);
-    }
-
-    /**
-     * 
-     * 
-     * @param vListArray
-     */
-    public void setList(
-            final org.sourceforge.mbeanmonitoring.report.castor.List[] vListArray) {
-        //-- copy array
-        _listList.clear();
-        
-        for (int i = 0; i < vListArray.length; i++) {
-                this._listList.add(vListArray[i]);
-        }
-    }
-
-    /**
-     * 
-     * 
-     * @param index
-     * @param vMessagecounter
-     * @throws java.lang.IndexOutOfBoundsException if the index
-     * given is outside the bounds of the collection
-     */
-    public void setMessagecounter(
-            final int index,
-            final org.sourceforge.mbeanmonitoring.report.castor.Messagecounter vMessagecounter)
-    throws java.lang.IndexOutOfBoundsException {
-        // check bounds for index
-        if (index < 0 || index >= this._messagecounterList.size()) {
-            throw new IndexOutOfBoundsException("setMessagecounter: Index value '" + index + "' not in range [0.." + (this._messagecounterList.size() - 1) + "]");
-        }
-        
-        this._messagecounterList.set(index, vMessagecounter);
-    }
-
-    /**
-     * 
-     * 
-     * @param vMessagecounterArray
-     */
-    public void setMessagecounter(
-            final org.sourceforge.mbeanmonitoring.report.castor.Messagecounter[] vMessagecounterArray) {
-        //-- copy array
-        _messagecounterList.clear();
-        
-        for (int i = 0; i < vMessagecounterArray.length; i++) {
-                this._messagecounterList.add(vMessagecounterArray[i]);
-        }
     }
 
     /**

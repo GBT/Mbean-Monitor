@@ -46,6 +46,16 @@ public class ServerParamTypeType implements java.io.Serializable {
     public static final ServerParamTypeType JMX = new ServerParamTypeType(JMX_TYPE, "jmx");
 
     /**
+     * The remoting type
+     */
+    public static final int REMOTING_TYPE = 2;
+
+    /**
+     * The instance of the remoting type
+     */
+    public static final ServerParamTypeType REMOTING = new ServerParamTypeType(REMOTING_TYPE, "remoting");
+
+    /**
      * Field _memberTable.
      */
     private static java.util.Hashtable _memberTable = init();
@@ -108,6 +118,7 @@ public class ServerParamTypeType implements java.io.Serializable {
         Hashtable members = new Hashtable();
         members.put("jnp", JNP);
         members.put("jmx", JMX);
+        members.put("remoting", REMOTING);
         return members;
     }
 
