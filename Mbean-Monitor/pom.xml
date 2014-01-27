@@ -4,7 +4,7 @@
   <groupId>org.sourceforge.mbeanmonitoring</groupId>
   <artifactId>mbeanmonitoring</artifactId>
   <name>MBean-Monitoring</name>
-  <version>1.2.3</version>
+  <version>1.2.4-SNAPSHOT</version>
  	 <description>
   	The MBean Monitor tool allow to monitor mbean activity, which include collecting data and 
 	displaying graphical representation of the mbean attribute evolution.
@@ -121,11 +121,6 @@ along with this program; if not, write to the Free Software
 	        mvn install:install-file -DgroupId=castor -DartifactId=castor -Dversion=1.1.2.1 -Dpackaging=jar -Dfile=lib/castor-1.1.2.1.jar
                  -->
 
-		<dependency>
-		    <groupId>castor</groupId>
-		    <artifactId>castor</artifactId>
-		    <version>1.1.2.1</version>
-		</dependency>
 
 		<dependency>
 		    <groupId>jfree</groupId>
@@ -136,11 +131,6 @@ along with this program; if not, write to the Free Software
 		<!-- TODO This dependancy is NOT on the maven repo, you have to install it manually:
 		mvn install:install-file -DgroupId=jboss -DartifactId=jboss-all-client -Dversion=4.2.2 -Dpackaging=jar -Dfile=${JBOSS_HOME}/client/jbossall-client.jar
 		 -->
-		<dependency>
-		    <groupId>jboss</groupId>
-		    <artifactId>jboss-all-client</artifactId>
-		    <version>4.2.2</version>
-		</dependency>
 
 		<dependency>
 		    <groupId>log4j</groupId>
@@ -151,12 +141,17 @@ along with this program; if not, write to the Free Software
 		<!--  TODO This dependancy is NOT on the maven repo, you have to install it manually:
 				mvn install:install-file -DgroupId=jboss -DartifactId=jboss-management -Dversion=4.2.2 -Dpackaging=jar -Dfile=${JBOSS_HOME}/server/default/lib/jboss-management.jar
 			 -->
-		 <dependency>
-		    <groupId>jboss</groupId>
-		    <artifactId>jboss-management</artifactId>
-		    <version>4.2.2</version>
-		</dependency>
 
+		 <dependency>
+		 	<groupId>org.codehaus.castor</groupId>
+		 	<artifactId>castor</artifactId>
+		 	<version>1.1.2.1</version>
+		 </dependency>
+		 <dependency>
+		 	<groupId>org.jboss.spec.javax.management.j2ee</groupId>
+		 	<artifactId>jboss-j2eemgmt-api_1.1_spec</artifactId>
+		 	<version>1.0.1.Final</version>
+		 </dependency>
 	</dependencies>
 
   	<reporting>
