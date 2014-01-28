@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Paramétrage par défaut de l'outil de capture des MBeans JBOSS-->
-<ServerParam host="localhost" type="remoting" port="5447" user="admin" password="admin*2014" genereTo="/tmp/JbossReport" extension="csv" MaxFileSize="14096KB" MaxBackupIndex="10" delay="30" separateur=";" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="reportserver.xsd">
+<ServerParam host="localhost" type="remoting" port="4447" user="admin" password="admin" genereTo="/tmp/JbossReport" extension="csv" MaxFileSize="14096KB" MaxBackupIndex="10" delay="30" separateur=";" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="reportserver.xsd">
 
         <mbean name="type=Runtime" domain="java.lang" filename="jboss-runtime">
                 <attribute name="Uptime"/>
@@ -12,7 +12,7 @@
         	<attribute name="NonHeapMemoryUsage" regexpr="contents=.(.*)}"/>
         </mbean>
 
-        <mbean name="subsystem=datasources,data-source=JeegyPool,statistics=pool" domain="jboss.as" filename="jdbc-JeegyPool">
+        <mbean name="subsystem=datasources,data-source=XXXPool,statistics=pool" domain="jboss.as" filename="jdbc-XXXXPool">
                 <attribute name="ActiveCount"/>
                 <attribute name="AvailableCount"/>
                 <attribute name="AverageBlockingTime"/>
@@ -29,7 +29,7 @@
                 <attribute name="TotalCreationTime"/>
         </mbean>
      
-        <mbean name="subsystem=datasources,data-source=JeegyPool,statistics=jdbc" domain="jboss.as" filename="jdbc-JeegyJDBC">
+        <mbean name="subsystem=datasources,data-source=XXXPool,statistics=jdbc" domain="jboss.as" filename="jdbc-XXXXJDBC">
                 <attribute name="PreparedStatementCacheAccessCount"/>
                 <attribute name="PreparedStatementCacheAddCount"/>
                 <attribute name="PreparedStatementCacheCurrentSize"/>
@@ -61,7 +61,7 @@
                 <attribute name="maxThreads"/>
         </mbean>
 
-        <mbean name="deployment=jeegy.war,subsystem=web" domain="jboss.as" filename="web-jeegy">
+        <mbean name="deployment=yyyy.war,subsystem=web" domain="jboss.as" filename="webapp">
                 <attribute name="activeSessions"/>
                 <attribute name="duplicatedSessionIds"/>
                 <attribute name="expiredSessions"/>
@@ -72,7 +72,7 @@
                 <attribute name="sessionsCreated"/>
         </mbean>
 
-        <mbean name="deployment=jeegy.war,subsystem=web,servlet=spring" domain="jboss.as" filename="web-jeegy-servletX">
+        <mbean name="deployment=yyyy.war,subsystem=web,servlet=aaaaa" domain="jboss.as" filename="web-servletX">
                 <attribute name="loadTime"/>
                 <attribute name="maxTime"/>
                 <attribute name="minTime"/>
@@ -92,7 +92,7 @@
                 <attribute name="waitTime"/>
         </mbean>
 
-        <mbean name="subsystem=messaging,hornetq-server=default,jms-topic=Bus.Main" domain="jboss.as" filename="jms-bus-main">
+        <mbean name="subsystem=messaging,hornetq-server=default,jms-topic=Test-Topic" domain="jboss.as" filename="jms-topic">
                 <attribute name="deliveringCount"/>
                 <attribute name="durableMessageCount"/>
                 <attribute name="durableSubscriptionCount"/>
