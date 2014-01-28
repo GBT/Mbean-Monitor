@@ -50,16 +50,16 @@
                 <attribute name="numberOfTransactions"/>
         </mbean>  
          
-        <!-- mbean name="name=http-0.0.0.0-8080,type=ThreadPool" domain="jboss.web" filename="tomcat-Pool">
+        <mbean name="type=ThreadPool,name=http-localhost-127.0.0.1-9080" domain="jboss.web" filename="http-Pool">
                 <attribute name="currentThreadsBusy"/>
                 <attribute name="currentThreadCount"/>
                 <attribute name="maxThreads"/>
         </mbean>
-        <mbean name="name=jk-8009,type=ThreadPool" domain="jboss.web" filename="jk-Pool">
+        <mbean name="type=ThreadPool,name=ajp-localhost-127.0.0.1-8009" domain="jboss.web" filename="jk-Pool">
                 <attribute name="currentThreadsBusy"/>
                 <attribute name="currentThreadCount"/>
                 <attribute name="maxThreads"/>
-        </mbean-->
+        </mbean>
 
         <mbean name="deployment=jeegy.war,subsystem=web" domain="jboss.as" filename="web-jeegy">
                 <attribute name="activeSessions"/>
